@@ -2,7 +2,7 @@
 
 Take a snapshot to copy images from all or part of your PC screen to specific folder.
 
-Download ScreenshotTools application: https://github.com/Vladimir-Novick/ScreenshotTools/blob/master/src/Release/ScreenshotTools.exe
+[Download ScreenshotTools application - Please click here ](/src/Release/ScreenshotTools.exe)
 
 ## Hot keys:
 

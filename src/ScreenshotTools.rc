@@ -257,8 +257,8 @@ BEGIN
     BEGIN
         MENUITEM "About...",                    32776
         MENUITEM SEPARATOR
-        MENUITEM "Draw Selection ( Ctrl + Shift  C )", ID_DRAW_SEL
-        MENUITEM "Window Select (Ctrl + Shift W )", ID_WIN_SEL
+        MENUITEM "( Ctrl + Shift C ) Draw and Cut out", ID_DRAW_SEL
+        MENUITEM "( Ctrl + Shift W ) - CUT section", ID_WIN_SEL
         MENUITEM SEPARATOR
         MENUITEM "Properties Window",           ID_SHOW
         MENUITEM "Get Screenshot Section",      ID__GETCAPTURESECTION

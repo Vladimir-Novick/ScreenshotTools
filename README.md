@@ -2,10 +2,14 @@
 
 Take a snapshot to copy images from all or part of your PC screen to specific folder.
 
+Download ScreenshotTools application: https://github.com/Vladimir-Novick/ScreenshotTools/blob/master/src/Release/ScreenshotTools.exe
+
 ## Hot keys:
 
  ( Ctrl + Shift C ) - select screen region  and CUT  to the folder
+
  ( Ctrl + Shift W ) - CUT the selected area by the previous selection 
+
 
 
 # License

@@ -1,0 +1,17 @@
+// ScreenshotTools.idl : IDL source for ScreenshotTools
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ScreenshotTools.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(67AD30C5-1730-4C1D-9A93-228F239BC6A4),
+	version(1.0)	
+]
+library ScreenshotToolsLib
+{
+	importlib("stdole2.tlb");
+};

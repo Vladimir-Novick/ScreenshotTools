@@ -1,0 +1,354 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_GET_DATA DIALOGEX 0, 0, 186, 53
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_TEXT,8,9,170,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,72,31,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,128,31,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_GET_DATA, DIALOG
+    BEGIN
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_VERSION             "Version"
+END
+
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1250)\r\n"
+    "#include ""ScreenshotTools.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "1 TYPELIB ""ScreenshotTools.tlb""\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN_DIALOG DIALOGEX 0, 0, 249, 171
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Screenshot Tools"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "Draw Selection",IDC_SCREEN_DRAW,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | BS_NOTIFY | WS_TABSTOP,12,141,68,16
+    EDITTEXT        IDC_LINE_WIDTH,197,54,30,13,ES_AUTOHSCROLL | ES_NUMBER
+    RTEXT           "Line Width",IDC_STATIC,145,56,42,10,0,WS_EX_TRANSPARENT
+    GROUPBOX        "Image Path",IDC_STATIC,5,8,235,34,0,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_IMAGE_PATH,13,20,199,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BROWSE_IMG_PATH,219,20,16,14
+    EDITTEXT        IDC_IMAGE_NAME,13,102,197,12,ES_AUTOHSCROLL
+    GROUPBOX        "Image Naming",IDC_STATIC,5,78,236,59,0,WS_EX_TRANSPARENT
+    CONTROL         "All images use this as prefix",IDC_OPT_IMGNAME_1,"Button",BS_AUTORADIOBUTTON,15,90,183,8
+    CONTROL         "All images ask for prefix",IDC_OPT_IMGNAME_2,"Button",BS_AUTORADIOBUTTON,14,119,92,10
+    CONTROL         "All images no prefix",IDC_OPT_IMGNAME_3,"Button",BS_AUTORADIOBUTTON,109,120,93,8
+    GROUPBOX        "",IDC_STATIC,5,44,235,31,0,WS_EX_TRANSPARENT
+    COMBOBOX        IDC_IMAGE_EXT,90,54,49,86,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Target Image Type",IDC_STATIC,13,54,69,12,SS_CENTERIMAGE,WS_EX_TRANSPARENT
+    CONTROL         "Region Selection ",IDC_REGION_SELECTION,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | BS_NOTIFY | WS_TABSTOP,160,141,68,16
+END
+
+IDD_ABOUT DIALOGEX 0, 0, 173, 74
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Screenshot Tool"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Close Window",IDOK,93,56,71,14
+    CTEXT           "(c) Vladimir Novick",IDC_STATIC,18,54,66,17,SS_CENTERIMAGE,WS_EX_TRANSPARENT
+    LTEXT           "( Ctrl + Shift  C ) - Draw and CUT OUT",IDC_STATIC,20,13,134,8
+    LTEXT           " ( Ctrl + Shift W ) - CUT OUT ",IDC_STATIC,18,26,141,8
+    LTEXT           "https://github.com/vladimir-novick",IDC_STATIC,29,42,110,8
+END
+
+IDD_CANVAS_DIALOG DIALOGEX 0, 0, 324, 198
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_BORDER
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,272,182,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_MAIN_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 239
+        BOTTOMMARGIN, 166
+    END
+
+    IDD_ABOUT, DIALOG
+    BEGIN
+    END
+
+    IDD_CANVAS_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 322
+        BOTTOMMARGIN, 196
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ABOUT               ICON                    "ABOUT.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,9,0,0
+ PRODUCTVERSION 0,9,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x29L
+#else
+ FILEFLAGS 0x28L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "Comments", "(c) Vladimir Novick"
+            VALUE "CompanyName", "no"
+            VALUE "FileDescription", "yes"
+            VALUE "FileVersion", "0.9.0.0"
+            VALUE "InternalName", "ScreenshotTools.exe"
+            VALUE "LegalCopyright", "sometimes"
+            VALUE "LegalTrademarks", "no way"
+            VALUE "OriginalFilename", "ScreenshotTools.exe"
+            VALUE "PrivateBuild", "sure"
+            VALUE "ProductName", "ScreenshotTools"
+            VALUE "ProductVersion", "0.9.0.0"
+            VALUE "SpecialBuild", "no"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_TRAY_MENU MENU
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "About...",                    32776
+        MENUITEM SEPARATOR
+        MENUITEM "Draw Selection ( Ctrl + Shift  C )", ID_DRAW_SEL
+        MENUITEM "Window Select (Ctrl + Shift W )", ID_WIN_SEL
+        MENUITEM SEPARATOR
+        MENUITEM "Properties Window",           ID_SHOW
+        MENUITEM "Get Screenshot Section",      ID__GETCAPTURESECTION
+        MENUITEM "Shutdown",                    ID_SHUTDOWN
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ABOUT AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_MAIN_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_CANVAS_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_SCREENSHOTTOOLS     REGISTRY                "ScreenshotTools.rgs"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    ID_BREAK                "Break"
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral (Sys. Default) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEUSD)
+LANGUAGE LANG_NEUTRAL, SUBLANG_SYS_DEFAULT
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "ScreenshotTools.ico"
+
+#endif    // Neutral (Sys. Default) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1250)
+#include "ScreenshotTools.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+1 TYPELIB "ScreenshotTools.tlb"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

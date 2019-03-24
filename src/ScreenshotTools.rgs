@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'ScreenshotTools'
+				'ScreenshotTools.EXE'
+				{
+			val AppID = s '%APPID%'
+		}
+	}
+}

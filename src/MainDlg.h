@@ -71,10 +71,12 @@ protected:
 	LRESULT OnMouseHookCancel(WPARAM wParam, LPARAM lParam);
 	LRESULT OnStartSelectRegion(WPARAM wParam, LPARAM lParam);
 
-	// Helper Functions
 	CString GetOutputFileName();
 
-	LRESULT GropScreeshot();
+	LRESULT LatestRectangularSnapshot();
+	LRESULT GropDeskScreenshot();
+
+	LRESULT CutRegionToFile(CPoint ptFirst, CPoint ptLast);
 
 	BOOL ActivateSelectionHook(BOOL bActivate);
 
@@ -120,7 +122,7 @@ protected:
 	afx_msg void OnShutdown();
 	afx_msg void OnShowAbout();
 	afx_msg void OnDrawSelection();
-	afx_msg void OnWindowSelect();
+	afx_msg void OnLatestRectangularSnapshot();
 	void ActivateCanvasWindow();
 	BOOL ActivateSelection(BOOL bActivate);
 

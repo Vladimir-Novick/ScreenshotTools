@@ -146,16 +146,18 @@ BEGIN
     CONTROL         "Region Selection ",IDC_REGION_SELECTION,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | BS_NOTIFY | WS_TABSTOP,160,141,68,16
 END
 
-IDD_ABOUT DIALOGEX 0, 0, 173, 74
+IDD_ABOUT DIALOGEX 0, 0, 179, 89
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About Screenshot Tool"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "Close Window",IDOK,93,56,71,14
-    CTEXT           "(c) Vladimir Novick",IDC_STATIC,18,54,66,17,SS_CENTERIMAGE,WS_EX_TRANSPARENT
-    LTEXT           "( Ctrl + Shift  C ) - Draw and CUT OUT",IDC_STATIC,20,13,134,8
-    LTEXT           " ( Ctrl + Shift W ) - CUT OUT ",IDC_STATIC,18,26,141,8
-    LTEXT           "https://github.com/vladimir-novick",IDC_STATIC,29,42,110,8
+    DEFPUSHBUTTON   "Close Window",IDOK,81,70,71,14
+    CTEXT           "(c) Vladimir Novick",IDC_STATIC,3,67,66,17,SS_CENTERIMAGE,WS_EX_TRANSPARENT
+    LTEXT           "( Ctrl + Shift  C ) - Rectangular Snapshot",IDC_STATIC,12,17,134,8
+    LTEXT           " ( Ctrl + Shift W ) - Latest Rectangular Snapshot ",IDC_STATIC,9,29,162,8
+    LTEXT           "https://github.com/vladimir-novick",IDC_STATIC,25,56,110,8
+    LTEXT           "( Ctrl + Shift  S ) -  Full-Screen Snapshot",IDC_STATIC,13,41,132,8
+    LTEXT           "HOT KEYS:",IDC_STATIC,7,4,36,8
 END
 
 IDD_CANVAS_DIALOG DIALOGEX 0, 0, 324, 198
@@ -182,6 +184,8 @@ BEGIN
 
     IDD_ABOUT, DIALOG
     BEGIN
+        RIGHTMARGIN, 155
+        BOTTOMMARGIN, 84
     END
 
     IDD_CANVAS_DIALOG, DIALOG
@@ -257,11 +261,11 @@ BEGIN
     BEGIN
         MENUITEM "About...",                    32776
         MENUITEM SEPARATOR
-        MENUITEM "( Ctrl + Shift C ) Draw and Cut out", ID_DRAW_SEL
-        MENUITEM "( Ctrl + Shift W ) - CUT section", ID_WIN_SEL
+        MENUITEM "( Ctrl + Shift  C ) - Rectangular Snapshot", ID_DRAW_SEL
+        MENUITEM "( Ctrl + Shift W ) - Latest Rectangular Snapshot ", ID_LATEST_RECTANGULAR
         MENUITEM SEPARATOR
         MENUITEM "Properties Window",           ID_SHOW
-        MENUITEM "Get Screenshot Section",      ID__GETCAPTURESECTION
+        MENUITEM SEPARATOR
         MENUITEM "Shutdown",                    ID_SHUTDOWN
     END
 END

@@ -42,6 +42,8 @@ CMainDlg* CMainDlg::m_pThis = NULL;
 #define  HOTKEY_200_c 200
 #define  HOTKEY_300_W 300
 #define  HOTKEY_400_w 400
+#define  HOTKEY_500_S 500
+#define  HOTKEY_600_s 600
 
 static int __stdcall BrowseCallbackProc(HWND, UINT, LPARAM, LPARAM);
 
@@ -66,7 +68,7 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_COMMAND(ID_SHUTDOWN, OnShutdown)
 	ON_COMMAND(ID_SHOW_ABOUT, OnShowAbout)
 	ON_COMMAND(ID_DRAW_SEL, OnDrawSelection)
-	ON_COMMAND(ID_WIN_SEL, OnWindowSelect)
+	ON_COMMAND(ID_LATEST_RECTANGULAR, OnLatestRectangularSnapshot)
 
 END_MESSAGE_MAP()
 
@@ -80,11 +82,37 @@ afx_msg LRESULT CMainDlg::OnActive(WPARAM wParam, LPARAM lParam) {
 
 afx_msg LRESULT CMainDlg::OnGropScreenshot(WPARAM wParam, LPARAM lParam)
 {
-	return GropScreeshot();
+	return LatestRectangularSnapshot();
 }
 
-LRESULT CMainDlg::GropScreeshot()
+LRESULT CMainDlg::LatestRectangularSnapshot()
 {
+	return CutRegionToFile(m_ptFirst, m_ptLast);
+}
+
+
+
+LRESULT CMainDlg::GropDeskScreenshot()
+{
+	int width = (int)GetSystemMetrics(SM_CXSCREEN);
+	int height = (int)GetSystemMetrics(SM_CYSCREEN);
+	CPoint ptFirst;
+
+	ptFirst.x = 0;
+	ptFirst.y = 0;
+
+	CPoint ptLast;
+	ptFirst.x = width;
+	ptFirst.y = height;
+
+	return CutRegionToFile(ptFirst, ptLast);
+}
+
+
+
+ LRESULT CMainDlg::CutRegionToFile(CPoint ptFirst, CPoint ptLast)
+{
+
 	HWND hDesktop = ::GetDesktopWindow();
 	ASSERT(hDesktop);
 
@@ -95,7 +123,7 @@ LRESULT CMainDlg::GropScreeshot()
 	if (!m_hTmpDraw)
 		return FALSE;
 
-	CRect rScreenshot(m_ptFirst, m_ptLast);
+	CRect rScreenshot(ptFirst, ptLast);
 	rScreenshot.NormalizeRect();
 
 	HBITMAP hScreenshotBmp = CropDDB(m_hTmpDraw, rScreenshot);
@@ -129,9 +157,12 @@ afx_msg LRESULT CMainDlg::OnHotKey(WPARAM wParam, LPARAM lParam) {
 
 	case HOTKEY_300_W:
 	case HOTKEY_400_w:
-		GropScreeshot();
+		LatestRectangularSnapshot();
 		break;
 
+	case HOTKEY_500_S :
+	case  HOTKEY_600_s :
+		GropDeskScreenshot();
 	}
 	return 1;
 }
@@ -192,6 +223,8 @@ BOOL CMainDlg::OnInitDialog()
 	RegisterHotKey(m_hWnd, HOTKEY_200_c, MOD_CONTROL | MOD_SHIFT, 'c');
 	RegisterHotKey(m_hWnd, HOTKEY_300_W, MOD_CONTROL | MOD_SHIFT, 'W');
 	RegisterHotKey(m_hWnd, HOTKEY_400_w, MOD_CONTROL | MOD_SHIFT, 'w');
+	RegisterHotKey(m_hWnd, HOTKEY_500_S, MOD_CONTROL | MOD_SHIFT, 'S');
+	RegisterHotKey(m_hWnd, HOTKEY_600_s, MOD_CONTROL | MOD_SHIFT, 's');
 
 	memset(&m_NID, 0, sizeof(m_NID));
 	m_NID.cbSize = sizeof(m_NID);
@@ -292,6 +325,8 @@ void CMainDlg::OnClose()
 	UnregisterHotKey(m_hWnd, HOTKEY_200_c);
 	UnregisterHotKey(m_hWnd, HOTKEY_300_W);
 	UnregisterHotKey(m_hWnd, HOTKEY_400_w);
+	UnregisterHotKey(m_hWnd, HOTKEY_500_S);
+	UnregisterHotKey(m_hWnd, HOTKEY_600_s);
 
 	m_NID.hIcon = NULL;
 	m_NID.uFlags = NIF_ICON;
@@ -504,25 +539,7 @@ LRESULT CMainDlg::OnSelectionComplete(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMainDlg::OnPrintScreen(WPARAM wParam, LPARAM lParam)
 {
-	BOOL bAltDown = (BOOL)wParam;
-
-	HWND hWnd = NULL;
-	if (bAltDown)
-		hWnd = ::GetForegroundWindow();
-	else
-		hWnd = ::GetDesktopWindow();
-
-	HBITMAP hScreenshotBmp = GetScreenshot(hWnd, NULL);
-	ASSERT(hScreenshotBmp);
-
-	CString strFile = GetOutputFileName();
-
-	CString strFilePath = m_strImagePath;
-	strFilePath += strFile;
-
-	SaveImageAs(hScreenshotBmp, strFilePath);
-
-	::DeleteObject(hScreenshotBmp);
+	GropDeskScreenshot();
 
 	return 0;
 }
@@ -576,14 +593,9 @@ void CMainDlg::ActivateCanvasWindow() {
 
 }
 
-void CMainDlg::OnWindowSelect()
+void CMainDlg::OnLatestRectangularSnapshot()
 {
-
-	m_bSelecting = TRUE;
-	m_hHilightWnd = NULL;
-
-	ActivateSelectionHook(TRUE);
-
+	LatestRectangularSnapshot();
 }
 
 void CMainDlg::OnMouseHookLButtonDown(UINT nFlags, CPoint point)

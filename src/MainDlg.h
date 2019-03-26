@@ -19,6 +19,8 @@ protected:
 
 	bool bMinimized_;
 
+	bool m_bGetScreenShot;
+
 	HICON m_hIcon; 
 
 	HCURSOR		m_hSelectCursor;
@@ -123,6 +125,7 @@ protected:
 	afx_msg void OnShowAbout();
 	afx_msg void OnDrawSelection();
 	afx_msg void OnLatestRectangularSnapshot();
+	afx_msg void CMainDlg::OnRegionSelect();
 	void ActivateCanvasWindow();
 	BOOL ActivateSelection(BOOL bActivate);
 

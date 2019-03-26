@@ -69,6 +69,8 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_COMMAND(ID_SHOW_ABOUT, OnShowAbout)
 	ON_COMMAND(ID_DRAW_SEL, OnDrawSelection)
 	ON_COMMAND(ID_LATEST_RECTANGULAR, OnLatestRectangularSnapshot)
+	ON_COMMAND(ID__RECTANGLE_SELECT, OnRegionSelect)
+	ON_COMMAND(IDC_REGION_SELECTION, OnRegionSelect)
 
 END_MESSAGE_MAP()
 
@@ -110,18 +112,21 @@ LRESULT CMainDlg::GropDeskScreenshot()
 
 
 
- LRESULT CMainDlg::CutRegionToFile(CPoint ptFirst, CPoint ptLast)
+LRESULT CMainDlg::CutRegionToFile(CPoint ptFirst, CPoint ptLast)
 {
-
+	if (!m_bGetScreenShot) {
+		m_bGetScreenShot = true;
+		return 1;
+	}
 	HWND hDesktop = ::GetDesktopWindow();
-	ASSERT(hDesktop);
+		ASSERT(hDesktop);
 
-	::InvalidateRect(hDesktop, NULL, TRUE);
-	::UpdateWindow(hDesktop);
+		::InvalidateRect(hDesktop, NULL, TRUE);
+		::UpdateWindow(hDesktop);
 
-	HBITMAP m_hTmpDraw = GetScreenshot(hDesktop);
-	if (!m_hTmpDraw)
-		return FALSE;
+		HBITMAP m_hTmpDraw = GetScreenshot(hDesktop);
+		if (!m_hTmpDraw)
+			return FALSE;
 
 	CRect rScreenshot(ptFirst, ptLast);
 	rScreenshot.NormalizeRect();
@@ -160,8 +165,8 @@ afx_msg LRESULT CMainDlg::OnHotKey(WPARAM wParam, LPARAM lParam) {
 		LatestRectangularSnapshot();
 		break;
 
-	case HOTKEY_500_S :
-	case  HOTKEY_600_s :
+	case HOTKEY_500_S:
+	case  HOTKEY_600_s:
 		GropDeskScreenshot();
 	}
 	return 1;
@@ -178,7 +183,7 @@ CMainDlg::CMainDlg(CWnd* pParent /*=NULL*/)
 	m_pThis = this;
 	m_bDrawing = FALSE;
 	m_bSelecting = FALSE;
-	
+
 	m_iBandPx = 3;
 	m_bDitherLast = FALSE;
 	m_hHilightWnd = NULL;
@@ -218,6 +223,7 @@ BOOL CMainDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	m_pCanvasDialog = nullptr;
+	m_bGetScreenShot = true;
 
 	RegisterHotKey(m_hWnd, HOTKEY_100_C, MOD_CONTROL | MOD_SHIFT, 'C');
 	RegisterHotKey(m_hWnd, HOTKEY_200_c, MOD_CONTROL | MOD_SHIFT, 'c');
@@ -254,8 +260,8 @@ BOOL CMainDlg::OnInitDialog()
 		}
 	}
 
-	SetIcon(m_hIcon, TRUE);		
-	SetIcon(m_hIcon, FALSE);	
+	SetIcon(m_hIcon, TRUE);
+	SetIcon(m_hIcon, FALSE);
 
 	CEdit* pEdit = NULL;
 	VERIFY(pEdit = (CEdit*)GetDlgItem(IDC_IMAGE_NAME));
@@ -297,7 +303,7 @@ BOOL CMainDlg::OnInitDialog()
 
 	ActivateKeyboardHook(TRUE);
 
-	return TRUE;  
+	return TRUE;
 }
 
 void CMainDlg::OnDestroy()
@@ -593,9 +599,14 @@ void CMainDlg::ActivateCanvasWindow() {
 
 }
 
-void CMainDlg::OnLatestRectangularSnapshot()
+afx_msg void CMainDlg::OnLatestRectangularSnapshot()
 {
 	LatestRectangularSnapshot();
+}
+
+afx_msg void CMainDlg::OnRegionSelect() {
+	m_bGetScreenShot = false;
+	ActivateCanvasWindow();
 }
 
 void CMainDlg::OnMouseHookLButtonDown(UINT nFlags, CPoint point)

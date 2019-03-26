@@ -1,5 +1,8 @@
 
 #pragma once
+#ifndef ScreenshotTools_h
+#define ScreenshotTools_h
+
 #ifndef __AFXWIN_H__
 #error include 'stdafx.h' before including this file for PCH
 #endif
@@ -27,3 +30,5 @@ public:
 };
 
 extern CApp theApp;
+
+#endif

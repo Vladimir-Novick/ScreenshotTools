@@ -137,6 +137,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="ABOUT.ico" />
+    <Image Include="images\properties.bmp" />
+    <Image Include="images\properties.ico" />
     <Image Include="ScreenshotTools.ico" />
   </ItemGroup>
   <ItemGroup>

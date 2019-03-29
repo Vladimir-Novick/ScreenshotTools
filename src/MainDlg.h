@@ -105,7 +105,7 @@ protected:
 	afx_msg LRESULT OnGropScreenshot(WPARAM wParam, LPARAM lParam);
 
 	afx_msg LRESULT OnHotKey(WPARAM wParam, LPARAM lParam);
-
+	afx_msg LRESULT OnQueryEndSession(WPARAM wParm, LPARAM lParm);
 	afx_msg void OnCbnSelchangeImageExt();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnBnClickedScreenDraw();

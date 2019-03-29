@@ -76,6 +76,12 @@
     <Image Include="ScreenshotTools.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="images\properties.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\properties.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="ScreenshotTools.manifest" />

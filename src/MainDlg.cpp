@@ -64,6 +64,7 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_MESSAGE(WM_TRAY_NOTIFICATION, OnTrayNotification)
 	ON_MESSAGE(WM_HOTKEY, OnHotKey)
 	ON_MESSAGE(WM_ACTIVATE, OnActive)
+	ON_MESSAGE(WM_QUERYENDSESSION, OnQueryEndSession)
 	ON_COMMAND(ID_SHOW, OnTrayShow)
 	ON_COMMAND(ID_SHUTDOWN, OnShutdown)
 	ON_COMMAND(ID_SHOW_ABOUT, OnShowAbout)
@@ -73,6 +74,13 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_COMMAND(IDC_REGION_SELECTION, OnRegionSelect)
 
 END_MESSAGE_MAP()
+
+
+LRESULT CMainDlg::OnQueryEndSession(WPARAM wParm, LPARAM lParm)
+{
+		PostMessage(WM_QUIT);
+		return TRUE;
+}
 
 afx_msg LRESULT CMainDlg::OnActive(WPARAM wParam, LPARAM lParam) {
 	if (LOWORD(wParam) != WA_ACTIVE) {

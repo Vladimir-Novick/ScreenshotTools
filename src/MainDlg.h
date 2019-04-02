@@ -18,7 +18,7 @@ protected:
 	enum { IDD = IDD_MAIN_DIALOG };
 
 	bool bMinimized_;
-
+	HMENU popupMenu;
 	bool m_bGetScreenShot;
 
 	HICON m_hIcon; 
@@ -94,6 +94,7 @@ protected:
 	void RefreshWindow(HWND hWnd);
 	void GetControlValues();
 	void SetControlValues();
+	CBitmap* ConvertIconToBitmap(HICON hIcon);
 
 	// Windows Messages
 	DECLARE_MESSAGE_MAP()
@@ -109,7 +110,7 @@ protected:
 	afx_msg void OnCbnSelchangeImageExt();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnBnClickedScreenDraw();
-	afx_msg void OnBnClickedWindowSelect();
+
 	afx_msg void OnBnClickedBrowseImgPath();
 	afx_msg void OnEnKillfocusLineWidth();
 
@@ -118,6 +119,12 @@ protected:
 	LRESULT OnSelectionComplete(WPARAM wParam, LPARAM lParam);
 	LRESULT OnPrintScreen(WPARAM wParam, LPARAM lParam);
 	LRESULT OnTrayNotification(WPARAM wParam, LPARAM lParam);
+
+	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpdis);
+	afx_msg void OnInitMenuPopup(CMenu* pMenu, UINT nIndex, BOOL bSysMenu);
+	afx_msg void OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpmis);
+	HICON GetIconForItem(HMENU pMenu,UINT itemID) const;
+
 
 	// Tray Menu Items
 	afx_msg void OnTrayShow();

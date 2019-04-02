@@ -204,7 +204,17 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ABOUT               ICON                    "ABOUT.ico"
+IDI_ABOUT               ICON                    "D:\\DEVELOPMENT\\ScreenshotTools\\src\\ABOUT.ico"
+
+IDI_SHOW                ICON                    "images\\idi_show.ico"
+
+ABOUT                   ICON                    "images\\About_menu.ico"
+
+PROPERTIES_WINDOW       ICON                    "images\\properties.ico"
+
+RECTANGULAR_SNIP        ICON                    "images\\cut.ico"
+
+Select_a_Rectangular_region    ICON             "images\\select.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -259,11 +269,11 @@ IDR_TRAY_MENU MENU
 BEGIN
     POPUP ""
     BEGIN
-        MENUITEM "About...",                    32776
+        MENUITEM "About",                       32776
         MENUITEM SEPARATOR
-        MENUITEM "( Ctrl + Shift  C ) - Rectangular Snapshot", ID_DRAW_SEL
-        MENUITEM "( Ctrl + Shift W ) - Snapshot Latest Region", ID_LATEST_RECTANGULAR
-        MENUITEM "Select a Rectangular region ", ID__RECTANGLE_SELECT
+        MENUITEM "Rectangular Snip",            ID_DRAW_SEL
+        MENUITEM "Snip Latest Region",          ID_LATEST_RECTANGULAR
+        MENUITEM "Select a Rectangular region", ID__RECTANGLE_SELECT
         MENUITEM SEPARATOR
         MENUITEM "Properties Window",           ID_SHOW
         MENUITEM SEPARATOR

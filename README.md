@@ -2,6 +2,8 @@
 
 Take a snapshot to copy images from all or part of your PC screen to specific folder.
 
+This is program that runs in the background and be minimized to the system tray 
+
 [Download ScreenshotTools application - Please click here ](https://github.com/Vladimir-Novick/ScreenshotTools/raw/master/src/Release/ScreenshotTools.exe)
 
 ## Hot keys:
@@ -11,6 +13,7 @@ Take a snapshot to copy images from all or part of your PC screen to specific fo
  ( Ctrl + Shift W ) - Latest Rectangular Snapshot 
 
  ( Ctrl + Shift  S ) -  Full-Screen Snapshot
+
 
 
 

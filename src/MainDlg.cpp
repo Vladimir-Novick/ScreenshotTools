@@ -52,6 +52,10 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_WM_SIZE()
 	ON_WM_SYSCOMMAND()
 
+	ON_WM_DRAWITEM()
+	ON_WM_MEASUREITEM()
+	ON_WM_INITMENUPOPUP()
+
 	ON_CBN_SELCHANGE(IDC_IMAGE_EXT, OnCbnSelchangeImageExt)
 	ON_BN_CLICKED(IDC_SCREEN_DRAW, OnBnClickedScreenDraw)
 	ON_BN_CLICKED(IDC_BROWSE_IMG_PATH, OnBnClickedBrowseImgPath)
@@ -65,6 +69,7 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_MESSAGE(WM_HOTKEY, OnHotKey)
 	ON_MESSAGE(WM_ACTIVATE, OnActive)
 	ON_MESSAGE(WM_QUERYENDSESSION, OnQueryEndSession)
+
 	ON_COMMAND(ID_SHOW, OnTrayShow)
 	ON_COMMAND(ID_SHUTDOWN, OnShutdown)
 	ON_COMMAND(ID_SHOW_ABOUT, OnShowAbout)
@@ -72,6 +77,8 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_COMMAND(ID_LATEST_RECTANGULAR, OnLatestRectangularSnapshot)
 	ON_COMMAND(ID__RECTANGLE_SELECT, OnRegionSelect)
 	ON_COMMAND(IDC_REGION_SELECTION, OnRegionSelect)
+
+	ON_WM_DRAWITEM()
 
 END_MESSAGE_MAP()
 
@@ -82,6 +89,9 @@ LRESULT CMainDlg::OnQueryEndSession(WPARAM wParm, LPARAM lParm)
 		return TRUE;
 }
 
+
+
+
 afx_msg LRESULT CMainDlg::OnActive(WPARAM wParam, LPARAM lParam) {
 	if (LOWORD(wParam) != WA_ACTIVE) {
 		ShowWindow(SW_HIDE);
@@ -89,6 +99,143 @@ afx_msg LRESULT CMainDlg::OnActive(WPARAM wParam, LPARAM lParam) {
 
 	return 1;
 }
+
+#pragma region Draw menu icon
+
+
+
+
+HICON CMainDlg::GetIconForItem(HMENU pmenu,UINT itemID) const
+{
+	HICON hIcon = (HICON)0;
+
+	if (IS_INTRESOURCE(itemID))
+	{
+		HICON hIcon = static_cast<HICON>(::LoadImage(::AfxGetResourceHandle(),
+			MAKEINTRESOURCE(itemID),
+			IMAGE_ICON,
+			16, 16,    // or whatever size icon you want to load
+			LR_DEFAULTCOLOR | LR_SHARED));
+	}
+
+	if (hIcon == NULL)
+	{
+		CString sItem; // look for a named item in resources
+
+		char buf[100];
+
+		int retLength = GetMenuString(pmenu, itemID, buf, 100, 0);
+
+		sItem.Format("%s", buf);
+
+		sItem.Replace(_T(' '), _T('_')); // cannot have resource items with space in name
+
+		if (!sItem.IsEmpty())
+			hIcon = static_cast<HICON>(::LoadImage(::AfxGetResourceHandle(), sItem,
+				IMAGE_ICON, 16, 16, LR_DEFAULTCOLOR | LR_SHARED));
+	}
+	return hIcon;
+}
+
+void CMainDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpdis)
+{
+	if ((lpdis == NULL) || (lpdis->CtlType != ODT_MENU))
+	{
+		CDialog::OnDrawItem(nIDCtl, lpdis);
+		return; //not for a menu
+	}
+
+	HICON hIcon = GetIconForItem((HMENU)lpdis->hwndItem,lpdis->itemID);
+	if (hIcon)
+	{
+		ICONINFO iconinfo;
+		::GetIconInfo(hIcon, &iconinfo);
+
+		BITMAP bitmap;
+		::GetObject(iconinfo.hbmColor, sizeof(bitmap), &bitmap);
+		::DeleteObject(iconinfo.hbmColor);
+		::DeleteObject(iconinfo.hbmMask);
+
+		::DrawIconEx(lpdis->hDC, lpdis->rcItem.left, lpdis->rcItem.top,
+			hIcon, bitmap.bmWidth, bitmap.bmHeight, 0, NULL, DI_NORMAL);
+		//      ::DestroyIcon(hIcon); // we use LR_SHARED instead
+	}
+}
+
+void CMainDlg::OnInitMenuPopup(CMenu* pMenu, UINT nIndex, BOOL bSysMenu)
+{
+	
+	CDialog::OnInitMenuPopup(pMenu, nIndex, bSysMenu);
+
+	if (bSysMenu)
+	{
+		pMenu = GetSystemMenu(FALSE);
+	}
+	MENUINFO mnfo;
+	mnfo.cbSize = sizeof(mnfo);
+	mnfo.fMask = MIM_STYLE;
+	mnfo.dwStyle = MNS_CHECKORBMP | MNS_AUTODISMISS;
+	pMenu->SetMenuInfo(&mnfo);
+
+	MENUITEMINFO minfo;
+	minfo.cbSize = sizeof(minfo);
+
+	this->popupMenu = pMenu->m_hMenu;
+
+	for (UINT pos = 0; pos < pMenu->GetMenuItemCount(); pos++)
+	{
+		minfo.fMask = MIIM_FTYPE | MIIM_ID;
+		pMenu->GetMenuItemInfo(pos, &minfo, TRUE);
+
+		HICON hIcon = GetIconForItem(pMenu->m_hMenu,minfo.wID);
+
+		if (hIcon && !(minfo.fType & MFT_OWNERDRAW))
+		{
+
+			minfo.fMask = MIIM_FTYPE | MIIM_BITMAP;
+			minfo.hbmpItem = HBMMENU_CALLBACK;
+			minfo.fType = MFT_STRING;
+
+			pMenu->SetMenuItemInfo(pos, &minfo, TRUE);
+		}
+		
+		//        ::DestroyIcon(hIcon); // we use LR_SHARED instead
+	}
+}
+
+void CMainDlg::OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpmis)
+{
+	if ((lpmis == NULL) || (lpmis->CtlType != ODT_MENU))
+	{
+		CDialog::OnMeasureItem(nIDCtl, lpmis); //not for a menu
+		return;
+	}
+
+	lpmis->itemWidth = 16;
+	lpmis->itemHeight = 16;
+
+
+	HICON hIcon = GetIconForItem(this->popupMenu,  lpmis->itemID);
+
+	if (hIcon)
+	{
+		ICONINFO iconinfo;
+		::GetIconInfo(hIcon, &iconinfo);
+
+		BITMAP bitmap;
+		::GetObject(iconinfo.hbmColor, sizeof(bitmap), &bitmap);
+		::DeleteObject(iconinfo.hbmColor);
+		::DeleteObject(iconinfo.hbmMask);
+
+		lpmis->itemWidth = bitmap.bmWidth;
+		lpmis->itemHeight = bitmap.bmHeight;
+
+
+	}
+}
+
+#pragma endregion
+
 
 afx_msg LRESULT CMainDlg::OnGropScreenshot(WPARAM wParam, LPARAM lParam)
 {
@@ -388,6 +535,23 @@ void CMainDlg::OnSysCommand(UINT nID, LPARAM lParam)
 
 }
 
+CBitmap* CMainDlg::ConvertIconToBitmap(HICON hIcon)
+{
+	CDC dc;
+	CBitmap bmp;
+	CClientDC ClientDC(this);
+	dc.CreateCompatibleDC(&ClientDC);
+	bmp.CreateCompatibleBitmap(&ClientDC, 16, 16);
+	CBitmap* pOldBmp = (CBitmap*)dc.SelectObject(&bmp);
+	::DrawIconEx(dc.GetSafeHdc(), 0, 0, hIcon, 16, 16, 0, (HBRUSH)RGB(255, 255, 255), DI_NORMAL);
+	dc.SelectObject(pOldBmp);
+	dc.DeleteDC();
+	HBITMAP hBitmap = (HBITMAP)::CopyImage((HANDLE)((HBITMAP)bmp),
+		IMAGE_BITMAP , 0, 0, LR_DEFAULTSIZE);
+
+	return CBitmap::FromHandle(hBitmap);
+}
+
 LRESULT CMainDlg::OnTrayNotification(WPARAM wParam, LPARAM lParam)
 {
 	UINT uID = (UINT)wParam;
@@ -422,7 +586,7 @@ LRESULT CMainDlg::OnTrayNotification(WPARAM wParam, LPARAM lParam)
 		::TrackPopupMenu(pSubMenu->m_hMenu, 0, pos.x, pos.y, 0, m_hWnd, NULL);
 
 		PostMessage(WM_NULL, 0, 0);
-
+		popupMenu = NULL;
 		TrayMenu.DestroyMenu();
 
 		return 1;
@@ -447,6 +611,9 @@ void CMainDlg::OnBnClickedScreenDraw()
 	ShowWindow(SW_HIDE);
 	ActivateSelectionHook(TRUE);
 }
+
+
+
 
 void CMainDlg::OnBnClickedBrowseImgPath()
 {

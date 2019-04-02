@@ -76,10 +76,19 @@
     <Image Include="ScreenshotTools.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="images\properties.bmp">
+    <Image Include="images\properties.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="images\properties.ico">
+    <Image Include="images\idi_show.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\About_menu.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\cut.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\select.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

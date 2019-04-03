@@ -18,6 +18,7 @@ protected:
 	enum { IDD = IDD_MAIN_DIALOG };
 
 	bool bMinimized_;
+	bool m_bToClipboardEnabled;
 	HMENU popupMenu;
 	bool m_bGetScreenShot;
 
@@ -76,7 +77,7 @@ protected:
 	CString GetOutputFileName();
 
 	LRESULT LatestRectangularSnapshot();
-	LRESULT GropDeskScreenshot();
+	LRESULT SnipDeskScreenshot();
 
 	LRESULT CutRegionToFile(CPoint ptFirst, CPoint ptLast);
 
@@ -110,7 +111,7 @@ protected:
 	afx_msg void OnCbnSelchangeImageExt();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnBnClickedScreenDraw();
-
+	afx_msg void OnSnipToClipboard();
 	afx_msg void OnBnClickedBrowseImgPath();
 	afx_msg void OnEnKillfocusLineWidth();
 
@@ -130,7 +131,7 @@ protected:
 	afx_msg void OnTrayShow();
 	afx_msg void OnShutdown();
 	afx_msg void OnShowAbout();
-	afx_msg void OnDrawSelection();
+	afx_msg void OnDrawAndSnipSelection();
 	afx_msg void OnLatestRectangularSnapshot();
 	afx_msg void CMainDlg::OnRegionSelect();
 	void ActivateCanvasWindow();

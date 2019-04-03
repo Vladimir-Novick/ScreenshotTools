@@ -22,6 +22,7 @@
 #define IDC_BROWSE_IMG_PATH             1004
 #define IDC_SCREEN_DRAW                 1005
 #define IDC_WIN_SELECT                  1006
+#define IDC_SCREEN_DRAW2                1006
 #define IDC_IMAGE_NAME                  1007
 #define IDC_OPT_IMGNAME_1               1008
 #define IDC_OPT_IMGNAME_2               1009
@@ -29,6 +30,7 @@
 #define IDC_TEXT                        1011
 #define IDC_REGION_SELECTION            1011
 #define IDC_IMAGE_EXT                   1012
+#define IDC_SNIP_TO_CLIPBOARD           1013
 #define IDR_SHUTDOWN                    32771
 #define ID_SHOW                         32773
 #define ID_SHUTDOWN                     32774
@@ -39,14 +41,16 @@
 #define ID__GETCAPTURESECTION           32781
 #define ID_LATEST_RECTANGULAR           32783
 #define ID__RECTANGLE_SELECT            32785
+#define ID__SNIPTOCLIPBOARD             32786
+#define ID__                            32787
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        158
-#define _APS_NEXT_COMMAND_VALUE         32786
-#define _APS_NEXT_CONTROL_VALUE         1013
+#define _APS_NEXT_COMMAND_VALUE         32788
+#define _APS_NEXT_CONTROL_VALUE         1014
 #define _APS_NEXT_SYMED_VALUE           105
 #endif
 #endif

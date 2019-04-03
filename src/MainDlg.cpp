@@ -33,17 +33,13 @@ MIT License
 #include <Windows.h>
 #include "Canvas.h"
 #include "Message_IDs.h"
+#include "ClipboardUtils.h"
 
 HHOOK CMainDlg::m_hMouseHook = NULL;
 HHOOK CMainDlg::m_hKeyboardHook = NULL;
 CMainDlg* CMainDlg::m_pThis = NULL;
 
-#define  HOTKEY_100_C 100
-#define  HOTKEY_200_c 200
-#define  HOTKEY_300_W 300
-#define  HOTKEY_400_w 400
-#define  HOTKEY_500_S 500
-#define  HOTKEY_600_s 600
+
 
 static int __stdcall BrowseCallbackProc(HWND, UINT, LPARAM, LPARAM);
 
@@ -58,6 +54,7 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 
 	ON_CBN_SELCHANGE(IDC_IMAGE_EXT, OnCbnSelchangeImageExt)
 	ON_BN_CLICKED(IDC_SCREEN_DRAW, OnBnClickedScreenDraw)
+	ON_BN_CLICKED(IDC_SNIP_TO_CLIPBOARD,OnSnipToClipboard)
 	ON_BN_CLICKED(IDC_BROWSE_IMG_PATH, OnBnClickedBrowseImgPath)
 	ON_EN_KILLFOCUS(IDC_LINE_WIDTH, OnEnKillfocusLineWidth)
 	ON_MESSAGE(WM_SCREENDRAW_DONE, OnDrawComplete)
@@ -73,7 +70,8 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_COMMAND(ID_SHOW, OnTrayShow)
 	ON_COMMAND(ID_SHUTDOWN, OnShutdown)
 	ON_COMMAND(ID_SHOW_ABOUT, OnShowAbout)
-	ON_COMMAND(ID_DRAW_SEL, OnDrawSelection)
+	ON_COMMAND(ID_DRAW_SEL, OnDrawAndSnipSelection)
+	ON_COMMAND(ID__SNIPTOCLIPBOARD, OnSnipToClipboard)
 	ON_COMMAND(ID_LATEST_RECTANGULAR, OnLatestRectangularSnapshot)
 	ON_COMMAND(ID__RECTANGLE_SELECT, OnRegionSelect)
 	ON_COMMAND(IDC_REGION_SELECTION, OnRegionSelect)
@@ -249,7 +247,7 @@ LRESULT CMainDlg::LatestRectangularSnapshot()
 
 
 
-LRESULT CMainDlg::GropDeskScreenshot()
+LRESULT CMainDlg::SnipDeskScreenshot()
 {
 	int width = (int)GetSystemMetrics(SM_CXSCREEN);
 	int height = (int)GetSystemMetrics(SM_CYSCREEN);
@@ -310,19 +308,28 @@ LRESULT CMainDlg::CutRegionToFile(CPoint ptFirst, CPoint ptLast)
 afx_msg LRESULT CMainDlg::OnHotKey(WPARAM wParam, LPARAM lParam) {
 	switch (wParam)
 	{
-	case HOTKEY_100_C:
-	case HOTKEY_200_c:
-		OnDrawSelection();
-		break;
 
-	case HOTKEY_300_W:
-	case HOTKEY_400_w:
+
+	case HOTKEY_300_W_LatestRectangularSnapshot:
+	case HOTKEY_400_w_LatestRectangularSnapshot:
 		LatestRectangularSnapshot();
 		break;
 
-	case HOTKEY_500_S:
-	case  HOTKEY_600_s:
-		GropDeskScreenshot();
+	case HOTKEY_500_S_SnipDeskScreenshot:
+	case  HOTKEY_600_s_SnipDeskScreenshot:
+		SnipDeskScreenshot();
+		break;
+
+	case HOTKEY_100_X_OnDrawAndSpanSelection:
+	case HOTKEY_200_x_OnDrawAndSnipSelection:
+		OnDrawAndSnipSelection();
+		break;
+
+	case HOTKEY_700_C_OnSnipToClipboard:
+	case HOTKEY_800_c_OnSnipToClipboard:
+		OnSnipToClipboard();
+		break;
+
 	}
 	return 1;
 }
@@ -379,13 +386,17 @@ BOOL CMainDlg::OnInitDialog()
 
 	m_pCanvasDialog = nullptr;
 	m_bGetScreenShot = true;
+	m_bToClipboardEnabled = false;
 
-	RegisterHotKey(m_hWnd, HOTKEY_100_C, MOD_CONTROL | MOD_SHIFT, 'C');
-	RegisterHotKey(m_hWnd, HOTKEY_200_c, MOD_CONTROL | MOD_SHIFT, 'c');
-	RegisterHotKey(m_hWnd, HOTKEY_300_W, MOD_CONTROL | MOD_SHIFT, 'W');
-	RegisterHotKey(m_hWnd, HOTKEY_400_w, MOD_CONTROL | MOD_SHIFT, 'w');
-	RegisterHotKey(m_hWnd, HOTKEY_500_S, MOD_CONTROL | MOD_SHIFT, 'S');
-	RegisterHotKey(m_hWnd, HOTKEY_600_s, MOD_CONTROL | MOD_SHIFT, 's');
+	RegisterHotKey(m_hWnd, HOTKEY_100_X_OnDrawAndSpanSelection, MOD_CONTROL | MOD_SHIFT, HOTKEY_100_X_CHAR);
+	RegisterHotKey(m_hWnd, HOTKEY_200_x_OnDrawAndSnipSelection, MOD_CONTROL | MOD_SHIFT, HOTKEY_200_x_CHAR);
+	RegisterHotKey(m_hWnd, HOTKEY_300_W_LatestRectangularSnapshot, MOD_CONTROL | MOD_SHIFT, HOTKEY_300_W_CHAR);
+	RegisterHotKey(m_hWnd, HOTKEY_400_w_LatestRectangularSnapshot, MOD_CONTROL | MOD_SHIFT, HOTKEY_400_w_CHAR);
+	RegisterHotKey(m_hWnd, HOTKEY_500_S_SnipDeskScreenshot, MOD_CONTROL | MOD_SHIFT, HOTKEY_500_S_CHAR);
+	RegisterHotKey(m_hWnd, HOTKEY_600_s_SnipDeskScreenshot, MOD_CONTROL | MOD_SHIFT, HOTKEY_600_s_CHAR);
+
+	RegisterHotKey(m_hWnd, HOTKEY_700_C_OnSnipToClipboard, MOD_CONTROL | MOD_SHIFT, HOTKEY_700_C_CHAR);
+	RegisterHotKey(m_hWnd, HOTKEY_800_c_OnSnipToClipboard, MOD_CONTROL | MOD_SHIFT, HOTKEY_800_c_CHAR);
 
 	memset(&m_NID, 0, sizeof(m_NID));
 	m_NID.cbSize = sizeof(m_NID);
@@ -482,12 +493,15 @@ void CMainDlg::OnClose()
 	ActivateKeyboardHook(0);
 	ActivateSelectionHook(0);
 	ActivateSelection(false);
-	UnregisterHotKey(m_hWnd, HOTKEY_100_C);
-	UnregisterHotKey(m_hWnd, HOTKEY_200_c);
-	UnregisterHotKey(m_hWnd, HOTKEY_300_W);
-	UnregisterHotKey(m_hWnd, HOTKEY_400_w);
-	UnregisterHotKey(m_hWnd, HOTKEY_500_S);
-	UnregisterHotKey(m_hWnd, HOTKEY_600_s);
+	UnregisterHotKey(m_hWnd, HOTKEY_100_X_OnDrawAndSpanSelection);
+	UnregisterHotKey(m_hWnd, HOTKEY_200_x_OnDrawAndSnipSelection);
+	UnregisterHotKey(m_hWnd, HOTKEY_300_W_LatestRectangularSnapshot);
+	UnregisterHotKey(m_hWnd, HOTKEY_400_w_LatestRectangularSnapshot);
+	UnregisterHotKey(m_hWnd, HOTKEY_500_S_SnipDeskScreenshot);
+	UnregisterHotKey(m_hWnd, HOTKEY_600_s_SnipDeskScreenshot);
+
+	UnregisterHotKey(m_hWnd, HOTKEY_700_C_OnSnipToClipboard);
+	UnregisterHotKey(m_hWnd, HOTKEY_800_c_OnSnipToClipboard);
 
 	m_NID.hIcon = NULL;
 	m_NID.uFlags = NIF_ICON;
@@ -612,7 +626,13 @@ void CMainDlg::OnBnClickedScreenDraw()
 	ActivateSelectionHook(TRUE);
 }
 
-
+void CMainDlg::OnSnipToClipboard()
+{
+	m_bSelecting = FALSE;
+	m_bToClipboardEnabled = true;
+	ShowWindow(SW_HIDE);
+	ActivateSelectionHook(TRUE);
+}
 
 
 void CMainDlg::OnBnClickedBrowseImgPath()
@@ -720,7 +740,7 @@ LRESULT CMainDlg::OnSelectionComplete(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMainDlg::OnPrintScreen(WPARAM wParam, LPARAM lParam)
 {
-	GropDeskScreenshot();
+	SnipDeskScreenshot();
 
 	return 0;
 }
@@ -747,11 +767,13 @@ void CMainDlg::OnShowAbout()
 	dlg.DoModal();
 }
 
-void CMainDlg::OnDrawSelection()
+void CMainDlg::OnDrawAndSnipSelection()
 {
 
 	ActivateSelectionHook(TRUE);
 }
+
+
 
 void CMainDlg::ActivateCanvasWindow() {
 
@@ -1121,6 +1143,15 @@ int CMainDlg::GetEncoderClsid(const WCHAR* format, CLSID* pClsid)
 BOOL CMainDlg::SaveImageAs(HBITMAP hBmp, CString strFile)
 {
 	USES_CONVERSION;
+
+	if (m_bToClipboardEnabled) {
+		m_bToClipboardEnabled = false;
+		ClipboardUtils clipboardUtils;
+		clipboardUtils.BitmapToClipboard(hBmp, m_hWnd);
+		return true;
+	}
+
+	
 
 	Bitmap* pScreenShot = new Bitmap(hBmp, (HPALETTE)NULL);
 

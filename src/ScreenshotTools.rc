@@ -123,41 +123,45 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // Dialog
 //
 
-IDD_MAIN_DIALOG DIALOGEX 0, 0, 265, 171
+IDD_MAIN_DIALOG DIALOGEX 0, 0, 279, 166
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "Screenshot Tools"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Select  Region and CUT OUT it",IDC_SCREEN_DRAW,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | BS_NOTIFY | WS_TABSTOP,12,139,107,16
-    EDITTEXT        IDC_LINE_WIDTH,197,54,30,13,ES_AUTOHSCROLL | ES_NUMBER
-    RTEXT           "Line Width",IDC_STATIC,145,56,42,10,0,WS_EX_TRANSPARENT
-    GROUPBOX        "Image Path",IDC_STATIC,5,8,235,34,0,WS_EX_TRANSPARENT
-    EDITTEXT        IDC_IMAGE_PATH,13,20,199,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "...",IDC_BROWSE_IMG_PATH,219,20,16,14
-    EDITTEXT        IDC_IMAGE_NAME,13,102,197,12,ES_AUTOHSCROLL
-    GROUPBOX        "Image Naming",IDC_STATIC,5,78,236,59,0,WS_EX_TRANSPARENT
-    CONTROL         "All images use this as prefix",IDC_OPT_IMGNAME_1,"Button",BS_AUTORADIOBUTTON,15,90,183,8
-    CONTROL         "All images ask for prefix",IDC_OPT_IMGNAME_2,"Button",BS_AUTORADIOBUTTON,14,119,92,10
-    CONTROL         "All images no prefix",IDC_OPT_IMGNAME_3,"Button",BS_AUTORADIOBUTTON,109,120,93,8
-    GROUPBOX        "",IDC_STATIC,5,44,235,31,0,WS_EX_TRANSPARENT
-    COMBOBOX        IDC_IMAGE_EXT,90,54,49,86,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    RTEXT           "Target Image Type",IDC_STATIC,13,54,69,12,SS_CENTERIMAGE,WS_EX_TRANSPARENT
-    CONTROL         "Select Rectangular Region",IDC_REGION_SELECTION,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | BS_NOTIFY | WS_TABSTOP,137,139,107,16
+    CONTROL         "Snip to Clipboard",IDC_SNIP_TO_CLIPBOARD,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | BS_NOTIFY | WS_TABSTOP,134,133,64,16
+    EDITTEXT        IDC_LINE_WIDTH,52,143,30,13,ES_AUTOHSCROLL | ES_NUMBER
+    GROUPBOX        "Image Path",IDC_STATIC,5,8,251,34,0,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_IMAGE_PATH,13,20,207,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BROWSE_IMG_PATH,232,19,16,14
+    EDITTEXT        IDC_IMAGE_NAME,14,58,100,12,ES_AUTOHSCROLL
+    CONTROL         "All images use this as prefix",IDC_OPT_IMGNAME_1,"Button",BS_AUTORADIOBUTTON,13,92,103,8
+    CONTROL         "All images ask for prefix",IDC_OPT_IMGNAME_2,"Button",BS_AUTORADIOBUTTON,13,106,92,10
+    CONTROL         "All images no prefix",IDC_OPT_IMGNAME_3,"Button",BS_AUTORADIOBUTTON,13,121,93,8
+    COMBOBOX        IDC_IMAGE_EXT,207,54,49,86,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Target Image Type",IDC_STATIC,127,54,69,12,SS_CENTERIMAGE,WS_EX_TRANSPARENT
+    CONTROL         "Select Region",IDC_REGION_SELECTION,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | BS_NOTIFY | WS_TABSTOP,134,105,64,16
+    CONTROL         "Snip to File",IDC_SCREEN_DRAW2,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | BS_NOTIFY | WS_TABSTOP,134,75,64,16
+    LTEXT           "( Ctrl + Shift  X )",IDC_STATIC,207,79,54,8
+    LTEXT           "( Ctrl + Shift  C )",IDC_STATIC,204,138,54,8
+    GROUPBOX        "Image Naming",IDC_STATIC,4,47,120,31,0,WS_EX_TRANSPARENT
+    GROUPBOX        "Image prefix",IDC_STATIC,5,80,120,58,0,WS_EX_TRANSPARENT
+    LTEXT           "Line Width",IDC_STATIC,9,144,34,8
 END
 
-IDD_ABOUT DIALOGEX 0, 0, 159, 89
+IDD_ABOUT DIALOGEX 0, 0, 173, 96
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About Screenshot Tool"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "Close Window",IDOK,81,70,71,14
-    CTEXT           "(c) Vladimir Novick",IDC_STATIC,3,67,66,17,SS_CENTERIMAGE,WS_EX_TRANSPARENT
-    LTEXT           "( Ctrl + Shift  C ) - Rectangular Snapshot",IDC_STATIC,12,17,134,8
-    LTEXT           " ( Ctrl + Shift W ) - Snip Latest Region ",IDC_STATIC,11,29,131,8
-    LTEXT           "https://github.com/vladimir-novick",IDC_STATIC,25,56,110,8
-    LTEXT           "( Ctrl + Shift  S ) -  Full-Screen Snapshot",IDC_STATIC,13,41,132,8
-    LTEXT           "HOT KEYS:",IDC_STATIC,7,4,36,8
+    DEFPUSHBUTTON   "Close Window",IDOK,84,76,71,14
+    CTEXT           "(c) Vladimir Novick",IDC_STATIC,4,74,66,17,SS_CENTERIMAGE,WS_EX_TRANSPARENT
+    LTEXT           "( Ctrl + Shift  X ) - Rectangular Snapshot",IDC_STATIC,9,43,134,8
+    LTEXT           " ( Ctrl + Shift W ) - Snip Latest Region ",IDC_STATIC,9,17,131,8
+    LTEXT           "https://github.com/vladimir-novick",IDC_STATIC,25,60,110,8
+    LTEXT           "( Ctrl + Shift  S ) -  Full-Screen Snapshot",IDC_STATIC,9,31,132,8
+    LTEXT           "",IDC_STATIC,7,4,8,8
+    GROUPBOX        "Snip to Files - HOT KEYS: ",IDC_STATIC,4,5,153,51
 END
 
 IDD_CANVAS_DIALOG DIALOGEX 0, 0, 324, 198
@@ -178,14 +182,14 @@ GUIDELINES DESIGNINFO
 BEGIN
     IDD_MAIN_DIALOG, DIALOG
     BEGIN
-        RIGHTMARGIN, 255
-        BOTTOMMARGIN, 166
+        RIGHTMARGIN, 269
+        BOTTOMMARGIN, 161
     END
 
     IDD_ABOUT, DIALOG
     BEGIN
-        RIGHTMARGIN, 153
-        BOTTOMMARGIN, 84
+        RIGHTMARGIN, 167
+        BOTTOMMARGIN, 91
     END
 
     IDD_CANVAS_DIALOG, DIALOG
@@ -212,9 +216,9 @@ ABOUT                   ICON                    "images\\About_menu.ico"
 
 PROPERTIES_WINDOW       ICON                    "images\\properties.ico"
 
-RECTANGULAR_SNIP        ICON                    "images\\cut.ico"
+SNIP_TO_FILE            ICON                    "images\\cut.ico"
 
-Select_a_Rectangular_region    ICON             "images\\select.ico"
+SELECT_A_RECTANGULAR_REGION ICON                    "images\\select.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -271,7 +275,9 @@ BEGIN
     BEGIN
         MENUITEM "About",                       32776
         MENUITEM SEPARATOR
-        MENUITEM "Rectangular Snip",            ID_DRAW_SEL
+        MENUITEM "Snip To File",                ID_DRAW_SEL
+        MENUITEM "Snip To Clipboard",           ID__SNIPTOCLIPBOARD
+        MENUITEM SEPARATOR
         MENUITEM "Snip Latest Region",          ID_LATEST_RECTANGULAR
         MENUITEM "Select a Rectangular region", ID__RECTANGLE_SELECT
         MENUITEM SEPARATOR

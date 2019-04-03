@@ -111,6 +111,7 @@
   <ItemGroup>
     <ClCompile Include="AboutDlg.cpp" />
     <ClCompile Include="Canvas.cpp" />
+    <ClCompile Include="ClipboardUtils.cpp" />
     <ClCompile Include="GetDataDlg.cpp" />
     <ClCompile Include="MainDlg.cpp" />
     <ClCompile Include="Registry.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="CanvasOperation.h" />
+    <ClInclude Include="ClipboardUtils.h" />
     <ClInclude Include="GetDataDlg.h" />
     <ClInclude Include="MainDlg.h" />
     <ClInclude Include="Message_IDs.h" />

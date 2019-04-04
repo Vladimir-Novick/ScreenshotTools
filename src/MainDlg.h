@@ -110,10 +110,11 @@ protected:
 	afx_msg LRESULT OnQueryEndSession(WPARAM wParm, LPARAM lParm);
 	afx_msg void OnCbnSelchangeImageExt();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
-	afx_msg void OnBnClickedScreenDraw();
-	afx_msg void OnSnipToClipboard();
-	afx_msg void OnBnClickedBrowseImgPath();
+	afx_msg void OnBtnClickedScreenDraw();
+	afx_msg void OnBtnSnipToClipboard();
+	afx_msg void OnBtnClickedBrowseImgPath();
 	afx_msg void OnEnKillfocusLineWidth();
+	afx_msg void  OnBtnSnipDeskScreenshot();
 
 	// Our Messages
 	LRESULT OnDrawComplete(WPARAM wParam, LPARAM lParam);

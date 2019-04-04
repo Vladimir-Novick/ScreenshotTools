@@ -53,9 +53,10 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_WM_INITMENUPOPUP()
 
 	ON_CBN_SELCHANGE(IDC_IMAGE_EXT, OnCbnSelchangeImageExt)
-	ON_BN_CLICKED(IDC_SCREEN_DRAW, OnBnClickedScreenDraw)
-	ON_BN_CLICKED(IDC_SNIP_TO_CLIPBOARD,OnSnipToClipboard)
-	ON_BN_CLICKED(IDC_BROWSE_IMG_PATH, OnBnClickedBrowseImgPath)
+	ON_BN_CLICKED(IDC_SCREEN_DRAW, OnBtnClickedScreenDraw)
+	ON_BN_CLICKED(IDC_FULL_SCREEN, OnBtnSnipDeskScreenshot)
+	ON_BN_CLICKED(IDC_SNIP_TO_CLIPBOARD,OnBtnSnipToClipboard)
+	ON_BN_CLICKED(IDC_BROWSE_IMG_PATH, OnBtnClickedBrowseImgPath)
 	ON_EN_KILLFOCUS(IDC_LINE_WIDTH, OnEnKillfocusLineWidth)
 	ON_MESSAGE(WM_SCREENDRAW_DONE, OnDrawComplete)
 	ON_MESSAGE(WM_MOUSEHOOK_CANCEL, OnMouseHookCancel)
@@ -71,7 +72,7 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_COMMAND(ID_SHUTDOWN, OnShutdown)
 	ON_COMMAND(ID_SHOW_ABOUT, OnShowAbout)
 	ON_COMMAND(ID_DRAW_SEL, OnDrawAndSnipSelection)
-	ON_COMMAND(ID__SNIPTOCLIPBOARD, OnSnipToClipboard)
+	ON_COMMAND(ID__SNIPTOCLIPBOARD, OnBtnSnipToClipboard)
 	ON_COMMAND(ID_LATEST_RECTANGULAR, OnLatestRectangularSnapshot)
 	ON_COMMAND(ID__RECTANGLE_SELECT, OnRegionSelect)
 	ON_COMMAND(IDC_REGION_SELECTION, OnRegionSelect)
@@ -86,8 +87,6 @@ LRESULT CMainDlg::OnQueryEndSession(WPARAM wParm, LPARAM lParm)
 		PostMessage(WM_QUIT);
 		return TRUE;
 }
-
-
 
 
 afx_msg LRESULT CMainDlg::OnActive(WPARAM wParam, LPARAM lParam) {
@@ -245,7 +244,9 @@ LRESULT CMainDlg::LatestRectangularSnapshot()
 	return CutRegionToFile(m_ptFirst, m_ptLast);
 }
 
-
+void  CMainDlg::OnBtnSnipDeskScreenshot() {
+	SnipDeskScreenshot();
+}
 
 LRESULT CMainDlg::SnipDeskScreenshot()
 {
@@ -327,7 +328,7 @@ afx_msg LRESULT CMainDlg::OnHotKey(WPARAM wParam, LPARAM lParam) {
 
 	case HOTKEY_700_C_OnSnipToClipboard:
 	case HOTKEY_800_c_OnSnipToClipboard:
-		OnSnipToClipboard();
+		OnBtnSnipToClipboard();
 		break;
 
 	}
@@ -618,7 +619,7 @@ void CMainDlg::OnCbnSelchangeImageExt()
 	m_clsidImgType = *(CLSID*)pCombo->GetItemData(iSel);
 }
 
-void CMainDlg::OnBnClickedScreenDraw()
+void CMainDlg::OnBtnClickedScreenDraw()
 {
 	m_bSelecting = FALSE;
 
@@ -626,7 +627,7 @@ void CMainDlg::OnBnClickedScreenDraw()
 	ActivateSelectionHook(TRUE);
 }
 
-void CMainDlg::OnSnipToClipboard()
+void CMainDlg::OnBtnSnipToClipboard()
 {
 	m_bSelecting = FALSE;
 	m_bToClipboardEnabled = true;
@@ -635,7 +636,7 @@ void CMainDlg::OnSnipToClipboard()
 }
 
 
-void CMainDlg::OnBnClickedBrowseImgPath()
+void CMainDlg::OnBtnClickedBrowseImgPath()
 {
 
 	LPMALLOC pMalloc;

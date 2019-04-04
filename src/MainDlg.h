@@ -134,7 +134,7 @@ protected:
 	afx_msg void OnShowAbout();
 	afx_msg void OnDrawAndSnipSelection();
 	afx_msg void OnLatestRectangularSnapshot();
-	afx_msg void CMainDlg::OnRegionSelect();
+	afx_msg void OnRegionSelect();
 	void ActivateCanvasWindow();
 	BOOL ActivateSelection(BOOL bActivate);
 

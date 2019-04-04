@@ -280,9 +280,11 @@ BEGIN
         MENUITEM "About",                       32776
         MENUITEM SEPARATOR
         MENUITEM "Snip To File",                ID_DRAW_SEL
+        MENUITEM "Snip Latest Region",          ID_LATEST_RECTANGULAR
+        MENUITEM "Full-Screen Snapshot",        ID__FULL_SCREEN
+        MENUITEM SEPARATOR
         MENUITEM "Snip To Clipboard",           ID__SNIPTOCLIPBOARD
         MENUITEM SEPARATOR
-        MENUITEM "Snip Latest Region",          ID_LATEST_RECTANGULAR
         MENUITEM "Select a Rectangular region", ID__RECTANGLE_SELECT
         MENUITEM SEPARATOR
         MENUITEM "Properties Window",           ID_SHOW

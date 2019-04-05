@@ -13,8 +13,8 @@ This is program that runs in the background and be minimized to the system tray
       * ( Ctrl + Shift  C ) - Rectangular Snapshot
       * ( Ctrl + Shift  W ) - Latest Rectangular Snapshot 
       * ( Ctrl + Shift  S ) - Full-Screen Snapshot
-      * ( Ctrl + Shift  C ) - Snippings creenshot to Clipboard
-      * ( Print Screen    ) - Automatic save screenchot to File
+      * ( Ctrl + Shift  C ) - Snippings screenshot to Clipboard
+      * ( Print Screen    ) - Automatic save screenshot to File
   * Saving Image to File
   * Choice storage directory
   * Choice type of image ( JPG, BMP, GIF , PNG , TIFF) 
@@ -26,7 +26,7 @@ This is program that runs in the background and be minimized to the system tray
     * Snipping screenshot To File
     * Snipping screenshot using Latest Region
     * Save Full-Screen Snapshot
-    * Snipping To Clipboard
+    * Snipping screenshot To Clipboard
     * Choice a Rectangular region
     * Show Properties Window
     * Shutdown
@@ -39,7 +39,7 @@ This is program that runs in the background and be minimized to the system tray
   * ( Ctrl + Shift  C ) - Rectangular Snapshot
   * ( Ctrl + Shift  W ) - Latest Rectangular Snapshot 
   * ( Ctrl + Shift  S ) - Full-Screen Snapshot
-  * ( Ctrl + Shift  C ) - Snipping to Clipboard
+  * ( Ctrl + Shift  C ) - Snipping screenshot to Clipboard
   * ( Print Screen    ) - Automatic save to File
 
 

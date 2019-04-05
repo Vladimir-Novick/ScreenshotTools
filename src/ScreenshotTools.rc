@@ -151,7 +151,7 @@ BEGIN
     PUSHBUTTON      " Full-Screen",IDC_FULL_SCREEN,134,74,61,14
 END
 
-IDD_ABOUT DIALOGEX 0, 0, 173, 126
+IDD_ABOUT DIALOGEX 0, 0, 183, 126
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About Screenshot Tool"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
@@ -159,13 +159,13 @@ BEGIN
     DEFPUSHBUTTON   "Close Window",IDOK,83,104,71,14
     CTEXT           "(c) Vladimir Novick",IDC_STATIC,3,104,66,17,SS_CENTERIMAGE,WS_EX_TRANSPARENT
     LTEXT           "( Ctrl + Shift  X ) - Rectangular Snapshot",IDC_STATIC,9,43,134,8
-    LTEXT           " ( Ctrl + Shift W ) - Snip Latest Region ",IDC_STATIC,9,17,131,8
-    LTEXT           "https://github.com/vladimir-novick",IDC_STATIC,25,95,110,8
+    LTEXT           " ( Ctrl + Shift W ) - Snipping latest selected region",IDC_STATIC,9,17,165,8
+    LTEXT           "https://github.com/vladimir-novick",IDC_STATIC,25,92,110,8
     LTEXT           "( Ctrl + Shift  S ) -  Full-Screen Snapshot",IDC_STATIC,9,31,132,8
     LTEXT           "",IDC_STATIC,7,4,8,8
-    GROUPBOX        "Snip to Files       - HOT KEYS: ",IDC_STATIC,4,5,153,51
-    GROUPBOX        "Snip to Clipboard - HOT KEYS: ",IDC_STATIC,4,59,152,31
-    LTEXT           "( Ctrl + Shift  C ) - Rectangular Snapshot",IDC_STATIC,13,77,134,8
+    GROUPBOX        "Snip to Files       - HOT KEYS: ",IDC_STATIC,4,5,171,51
+    GROUPBOX        "Snip to Clipboard - HOT KEYS: ",IDC_STATIC,4,59,172,31
+    LTEXT           "( Ctrl + Shift  C ) -Snipping screenshot",IDC_STATIC,13,77,155,8
 END
 
 IDD_CANVAS_DIALOG DIALOGEX 0, 0, 324, 198
@@ -192,7 +192,7 @@ BEGIN
 
     IDD_ABOUT, DIALOG
     BEGIN
-        RIGHTMARGIN, 167
+        RIGHTMARGIN, 177
         BOTTOMMARGIN, 121
     END
 
@@ -220,11 +220,11 @@ ABOUT                   ICON                    "images\\About_menu.ico"
 
 PROPERTIES_WINDOW       ICON                    "images\\properties.ico"
 
-SNIP_TO_FILE            ICON                    "images\\cut.ico"
+Snipping_Screenshot_To_File ICON                    "images\\cut.ico"
 
 SELECT_A_RECTANGULAR_REGION ICON                    "images\\select.ico"
 
-Snipping_To_Clipboard    ICON                    "images\\Snipping_To_Clipboard.ico"
+Snipping_screenshot_To_Clipboard ICON                    "images\\Snipping_To_Clipboard.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -281,13 +281,13 @@ BEGIN
     BEGIN
         MENUITEM "About",                       32776
         MENUITEM SEPARATOR
-        MENUITEM "Snip To File",                ID_DRAW_SEL
-        MENUITEM "Snip Latest Region",          ID_LATEST_RECTANGULAR
-        MENUITEM "Full-Screen Snapshot",        ID__FULL_SCREEN
+        MENUITEM "Snipping Screenshot To File", ID_DRAW_SEL
+        MENUITEM "Snipping screenshot using Latest Region", ID_LATEST_RECTANGULAR
+        MENUITEM "Save Full-Screen Snapshot",   ID__FULL_SCREEN
         MENUITEM SEPARATOR
-        MENUITEM "Snipping To Clipboard",       ID__SNIPTOCLIPBOARD
+        MENUITEM "Snipping Screenshot To Clipboard", ID__SNIPTOCLIPBOARD
         MENUITEM SEPARATOR
-        MENUITEM "Select a Rectangular region", ID__RECTANGLE_SELECT
+        MENUITEM "Choice a Rectangular region", ID__RECTANGLE_SELECT
         MENUITEM SEPARATOR
         MENUITEM "Properties Window",           ID_SHOW
         MENUITEM SEPARATOR

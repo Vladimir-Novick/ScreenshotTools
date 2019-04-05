@@ -21,10 +21,10 @@ This is program that runs in the background and be minimized to the system tray
   * Snippiing screentshot to Clipboard
   * Snipping latest selected region to file
   * Add prefix to file name 
-  * Automatic minimize program property window
+  * The properties window is automatically minimized to the system tray.
   * Menu of system toolbar icon:
-    * Snipping To File
-    * Snipping Latest Region
+    * Snipping screenshot To File
+    * Snipping screenshot using Latest Region
     * Save Full-Screen Snapshot
     * Snipping To Clipboard
     * Choice a Rectangular region

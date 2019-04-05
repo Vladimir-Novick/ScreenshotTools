@@ -8,7 +8,7 @@ This is program that runs in the background and be minimized to the system tray
 
 ## ScreenshotTools Features:
 
-  * Minimize to system toolbox icon
+  * Minimize to the system tray icon ![tray icon](https://github.com/Vladimir-Novick/ScreenshotTools/raw/master/src/doc/tray_icon.png)
   * Hot Keys options:
       * ( Ctrl + Shift  C ) - Rectangular Snapshot
       * ( Ctrl + Shift  W ) - Latest Rectangular Snapshot 

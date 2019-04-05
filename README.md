@@ -32,7 +32,7 @@ This is program that runs in the background and be minimized to the system tray
     * Shutdown
 
 
-![ScreenshotTools Properties Window ](https://github.com/Vladimir-Novick/ScreenshotTools/raw/master/doc/properties_window.png)
+![ScreenshotTools Properties Window ](https://github.com/Vladimir-Novick/ScreenshotTools/raw/master/src/doc/properties_window.png)
 
 
 #### Hot keys:

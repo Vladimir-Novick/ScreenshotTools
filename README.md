@@ -6,14 +6,41 @@ This is program that runs in the background and be minimized to the system tray
 
 [Download ScreenshotTools application - Please click here ](https://github.com/Vladimir-Novick/ScreenshotTools/raw/master/src/Release/ScreenshotTools.exe)
 
-## Hot keys:
+## ScreenshotTools Features:
 
- ( Ctrl + Shift  C ) - Rectangular Snapshot
+  * Minimize to system toolbox icon
+  * Hot Keys options:
+      * ( Ctrl + Shift  C ) - Rectangular Snapshot
+      * ( Ctrl + Shift  W ) - Latest Rectangular Snapshot 
+      * ( Ctrl + Shift  S ) - Full-Screen Snapshot
+      * ( Ctrl + Shift  C ) - Snippings creenshot to Clipboard
+      * ( Print Screen    ) - Automatic save screenchot to File
+  * Saving Image to File
+  * Choice storage directory
+  * Choice type of image ( JPG, BMP, GIF , PNG , TIFF) 
+  * Snippiing screentshot to Clipboard
+  * Snipping latest selected region to file
+  * Add prefix to file name 
+  * Automatic minimize program property window
+  * Menu of system toolbar icon:
+    * Snipping To File
+    * Snipping Latest Region
+    * Save Full-Screen Snapshot
+    * Snipping To Clipboard
+    * Choice a Rectangular region
+    * Show Properties Window
+    * Shutdown
 
- ( Ctrl + Shift W ) - Latest Rectangular Snapshot 
 
- ( Ctrl + Shift  S ) -  Full-Screen Snapshot
+![ScreenshotTools Properties Window ](https://github.com/Vladimir-Novick/ScreenshotTools/raw/master/doc/properties_window.png)
 
+
+#### Hot keys:
+  * ( Ctrl + Shift  C ) - Rectangular Snapshot
+  * ( Ctrl + Shift  W ) - Latest Rectangular Snapshot 
+  * ( Ctrl + Shift  S ) - Full-Screen Snapshot
+  * ( Ctrl + Shift  C ) - Snipping to Clipboard
+  * ( Print Screen    ) - Automatic save to File
 
 
 

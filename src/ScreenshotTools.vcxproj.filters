@@ -97,6 +97,16 @@
     <Image Include="images\select.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="images\Full-Screen_Snapshot.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\icon5.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\Snipping_To_Clipboard.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="doc\properties_window.png" />
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="ScreenshotTools.manifest" />

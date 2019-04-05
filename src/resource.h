@@ -17,6 +17,7 @@
 #define IDI_ICON2                       154
 #define IDI_ICON3                       155
 #define IDI_ICON4                       157
+#define IDI_ICON5                       160
 #define IDC_LINE_WIDTH                  1001
 #define IDC_IMAGE_PATH                  1003
 #define IDC_BROWSE_IMG_PATH             1004
@@ -51,7 +52,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        158
+#define _APS_NEXT_RESOURCE_VALUE        161
 #define _APS_NEXT_COMMAND_VALUE         32790
 #define _APS_NEXT_CONTROL_VALUE         1015
 #define _APS_NEXT_SYMED_VALUE           105

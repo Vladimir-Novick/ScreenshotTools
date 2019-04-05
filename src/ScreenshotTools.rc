@@ -224,6 +224,8 @@ SNIP_TO_FILE            ICON                    "images\\cut.ico"
 
 SELECT_A_RECTANGULAR_REGION ICON                    "images\\select.ico"
 
+Snipping_To_Clipboard    ICON                    "images\\Snipping_To_Clipboard.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -253,7 +255,7 @@ BEGIN
             VALUE "FileVersion", "0.9.0.0"
             VALUE "InternalName", "ScreenshotTools.exe"
             VALUE "LegalCopyright", "sometimes"
-            VALUE "LegalTrademarks", "no way"
+            VALUE "LegalTrademarks", "(c) Vladimir Novick"
             VALUE "OriginalFilename", "ScreenshotTools.exe"
             VALUE "PrivateBuild", "sure"
             VALUE "ProductName", "ScreenshotTools"
@@ -283,7 +285,7 @@ BEGIN
         MENUITEM "Snip Latest Region",          ID_LATEST_RECTANGULAR
         MENUITEM "Full-Screen Snapshot",        ID__FULL_SCREEN
         MENUITEM SEPARATOR
-        MENUITEM "Snip To Clipboard",           ID__SNIPTOCLIPBOARD
+        MENUITEM "Snipping To Clipboard",       ID__SNIPTOCLIPBOARD
         MENUITEM SEPARATOR
         MENUITEM "Select a Rectangular region", ID__RECTANGLE_SELECT
         MENUITEM SEPARATOR

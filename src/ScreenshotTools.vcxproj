@@ -139,11 +139,15 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="ABOUT.ico" />
+    <Image Include="doc\properties_window.png" />
     <Image Include="images\About_menu.ico" />
     <Image Include="images\cut.ico" />
+    <Image Include="images\Full-Screen_Snapshot.ico" />
+    <Image Include="images\icon5.ico" />
     <Image Include="images\idi_show.ico" />
     <Image Include="images\properties.ico" />
     <Image Include="images\select.ico" />
+    <Image Include="images\Snipping_To_Clipboard.ico" />
     <Image Include="ScreenshotTools.ico" />
   </ItemGroup>
   <ItemGroup>

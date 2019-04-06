@@ -22,6 +22,7 @@ This is program that runs in the background and be minimized to the system tray
   * Snipping latest selected region to file
   * Add prefix to file name 
   * The properties window is automatically minimized to the system tray.
+  * Ability to run the program when the computer boots.
   * Menu of system toolbar icon:
     * Snipping screenshot To File
     * Snipping screenshot using Latest Region

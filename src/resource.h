@@ -33,6 +33,7 @@
 #define IDC_IMAGE_EXT                   1012
 #define IDC_SNIP_TO_CLIPBOARD           1013
 #define IDC_FULL_SCREEN                 1014
+#define IDC_CHECK_AUTO_START            1015
 #define IDR_SHUTDOWN                    32771
 #define ID_SHOW                         32773
 #define ID_SHUTDOWN                     32774
@@ -54,7 +55,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        161
 #define _APS_NEXT_COMMAND_VALUE         32790
-#define _APS_NEXT_CONTROL_VALUE         1015
+#define _APS_NEXT_CONTROL_VALUE         1016
 #define _APS_NEXT_SYMED_VALUE           105
 #endif
 #endif

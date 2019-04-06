@@ -17,6 +17,7 @@ protected:
 	// Properties
 	HKEY	m_hMainKey;
 	TCHAR	m_strSubKey[MAX_PATH];
+	
 
 public:
 	// Implementation
@@ -33,6 +34,9 @@ public:
 	int		SetRegStrEnc(int iSwap, LPCTSTR strValName, LPCTSTR strValue);
 	int		GetRegBin(LPCTSTR strValName, void* pData, int iSize);
 	int		SetRegBin(LPCTSTR strValName, void* pData, int iSize);
+
+	int AutoRun(BOOL flag, LPCTSTR strValName = "");
+	BOOL IsAutoRun(LPCTSTR strValName);
 
 protected:
 	// Helper Functions

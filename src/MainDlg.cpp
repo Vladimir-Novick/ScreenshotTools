@@ -53,6 +53,7 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_WM_INITMENUPOPUP()
 
 	ON_CBN_SELCHANGE(IDC_IMAGE_EXT, OnCbnSelchangeImageExt)
+	
 	ON_BN_CLICKED(IDC_SCREEN_DRAW, OnBtnClickedScreenDraw)
 	ON_BN_CLICKED(IDC_FULL_SCREEN, OnBtnSnipDeskScreenshot)
 	ON_BN_CLICKED(IDC_SNIP_TO_CLIPBOARD,OnBtnSnipToClipboard)
@@ -808,6 +809,8 @@ afx_msg void CMainDlg::OnRegionSelect() {
 	ActivateCanvasWindow();
 }
 
+
+
 void CMainDlg::OnMouseHookLButtonDown(UINT nFlags, CPoint point)
 {
 
@@ -1294,6 +1297,8 @@ void CMainDlg::ReadRegistrySettings()
 	reg.GetRegStr(_T("ImageName"), m_strImageName.GetBuffer(255), m_strImageName);
 	m_strImageName.ReleaseBuffer();
 	m_iNamingOpt = reg.GetRegInt(_T("NamingOption"), m_iNamingOpt);
+
+	m_bAutoRun = reg.IsAutoRun(SCREENSHOT_TOOLS_REG_KEY);
 }
 
 void CMainDlg::WriteRegistrySettings()
@@ -1304,6 +1309,9 @@ void CMainDlg::WriteRegistrySettings()
 	reg.SetRegStr(_T("ImagePath"), (LPTSTR)(LPCTSTR)m_strImagePath);
 	reg.SetRegStr(_T("ImageName"), (LPTSTR)(LPCTSTR)m_strImageName);
 	reg.SetRegInt(_T("NamingOption"), m_iNamingOpt);
+	reg.AutoRun(m_bAutoRun, SCREENSHOT_TOOLS_REG_KEY);
+
+
 }
 
 void CMainDlg::GetControlValues()
@@ -1326,6 +1334,15 @@ void CMainDlg::GetControlValues()
 		m_iNamingOpt = 1;
 	else
 		m_iNamingOpt = 2;
+
+	m_bAutoRun = FALSE;
+	if (((CButton*)GetDlgItem(IDC_CHECK_AUTO_START))->GetCheck() == 1) {
+
+		m_bAutoRun = TRUE;
+	}
+	
+
+
 }
 
 void CMainDlg::SetControlValues()
@@ -1345,5 +1362,7 @@ void CMainDlg::SetControlValues()
 	case 1: ((CButton*)GetDlgItem(IDC_OPT_IMGNAME_2))->SetCheck(1);  break;
 	case 2: ((CButton*)GetDlgItem(IDC_OPT_IMGNAME_3))->SetCheck(1);  break;
 	}
+
+	((CButton*)GetDlgItem(IDC_CHECK_AUTO_START))->SetCheck(m_bAutoRun) ;
 }
 

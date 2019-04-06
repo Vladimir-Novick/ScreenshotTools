@@ -7,6 +7,8 @@
 
 #include "Canvas.h"
 
+#define SCREENSHOT_TOOLS_REG_KEY	"ScreenshotTools"
+
 class CMainDlg : public CDialog
 {
 public:
@@ -16,6 +18,10 @@ public:
 protected:	
 	// Dialog Data
 	enum { IDD = IDD_MAIN_DIALOG };
+
+
+	BOOL m_bAutoRun;
+
 
 	bool bMinimized_;
 	bool m_bToClipboardEnabled;
@@ -135,6 +141,7 @@ protected:
 	afx_msg void OnDrawAndSnipSelection();
 	afx_msg void OnLatestRectangularSnapshot();
 	afx_msg void OnRegionSelect();
+
 	void ActivateCanvasWindow();
 	BOOL ActivateSelection(BOOL bActivate);
 

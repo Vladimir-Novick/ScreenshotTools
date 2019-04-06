@@ -222,11 +222,11 @@ ABOUT                   ICON                    "images\\About_menu.ico"
 
 PROPERTIES_WINDOW       ICON                    "images\\properties.ico"
 
-Snipping_Screenshot_To_File ICON                    "images\\cut.ico"
+SNIPPING_SCREENSHOT_TO_FILE ICON                    "images\\cut.ico"
 
 SELECT_A_RECTANGULAR_REGION ICON                    "images\\select.ico"
 
-Snipping_screenshot_To_Clipboard ICON                    "images\\Snipping_To_Clipboard.ico"
+SNIPPING_SCREENSHOT_TO_CLIPBOARD ICON                    "images\\Snipping_To_Clipboard.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -293,7 +293,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Properties Window",           ID_SHOW
         MENUITEM SEPARATOR
-        MENUITEM "Shutdown",                    ID_SHUTDOWN
+        MENUITEM "Exit",                        ID_SHUTDOWN
     END
 END
 

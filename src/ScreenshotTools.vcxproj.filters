@@ -106,7 +106,6 @@
     <Image Include="images\Snipping_To_Clipboard.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="doc\properties_window.png" />
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="ScreenshotTools.manifest" />
@@ -123,7 +122,6 @@
     <None Include="ScreenshotTools.rgs">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="..\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="ScreenshotTools.idl">

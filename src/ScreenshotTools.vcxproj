@@ -139,7 +139,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="ABOUT.ico" />
-    <Image Include="doc\properties_window.png" />
     <Image Include="images\About_menu.ico" />
     <Image Include="images\cut.ico" />
     <Image Include="images\Full-Screen_Snapshot.ico" />
@@ -151,7 +150,6 @@
     <Image Include="ScreenshotTools.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\README.md" />
     <None Include="ScreenshotTools.rc2" />
     <None Include="ScreenshotTools.rgs" />
   </ItemGroup>

@@ -6,6 +6,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScreenshotTools", "Screensh
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50809B7E-A0E9-42A5-A42F-4B83B6D63A79}"
 	ProjectSection(SolutionItems) = preProject
+		doc\properties_window.png = doc\properties_window.png
+		..\README.md = ..\README.md
 		doc\tray_icon.png = doc\tray_icon.png
 	EndProjectSection
 EndProject

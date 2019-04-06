@@ -756,12 +756,14 @@ void CMainDlg::OnTrayShow()
 
 void CMainDlg::OnShutdown()
 {
+	if (MessageBox( _T("Are you sure you want to exit ?"), _T("Screenshot Tools"), MB_YESNO) == IDYES) {
 
-	m_NID.hIcon = NULL;
-	m_NID.uFlags = NIF_ICON;
-	::Shell_NotifyIcon(NIM_DELETE, &m_NID);
+		m_NID.hIcon = NULL;
+		m_NID.uFlags = NIF_ICON;
+		::Shell_NotifyIcon(NIM_DELETE, &m_NID);
 
-	PostMessage(WM_CLOSE);
+		PostMessage(WM_CLOSE);
+	}
 }
 
 void CMainDlg::OnShowAbout()

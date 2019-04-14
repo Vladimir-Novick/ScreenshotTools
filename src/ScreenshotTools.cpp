@@ -71,8 +71,11 @@ BOOL CApp::InitInstance()
 	{
 		if((hWnd) && (::IsWindow(hWnd)))
 		{
-			if(::IsIconic(hWnd))
+			if (!::IsWindowVisible(hWnd)) {
 				::ShowWindow(hWnd, SW_RESTORE);
+			}
+//			if(::IsIconic(hWnd))
+//				::ShowWindow(hWnd, SW_RESTORE);
 			::SetForegroundWindow(hWnd);
 			::BringWindowToTop(hWnd);
 			return FALSE;

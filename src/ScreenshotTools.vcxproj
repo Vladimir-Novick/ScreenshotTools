@@ -116,6 +116,7 @@
     <ClCompile Include="MainDlg.cpp" />
     <ClCompile Include="Registry.cpp" />
     <ClCompile Include="ScreenshotTools.cpp" />
+    <ClCompile Include="ShortcutProvider.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -135,10 +136,12 @@
     <ClInclude Include="Registry.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ScreenshotTools.h" />
+    <ClInclude Include="ShortcutProvider.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="ABOUT.ico" />
+    <Image Include="images\ScreenshotTools.ico" />
+    <Image Include="images\ABOUT.ico" />
     <Image Include="images\About_menu.ico" />
     <Image Include="images\cut.ico" />
     <Image Include="images\Full-Screen_Snapshot.ico" />
@@ -147,7 +150,7 @@
     <Image Include="images\properties.ico" />
     <Image Include="images\select.ico" />
     <Image Include="images\Snipping_To_Clipboard.ico" />
-    <Image Include="ScreenshotTools.ico" />
+   
   </ItemGroup>
   <ItemGroup>
     <None Include="ScreenshotTools.rc2" />

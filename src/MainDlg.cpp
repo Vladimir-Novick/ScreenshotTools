@@ -34,6 +34,7 @@ MIT License
 #include "Canvas.h"
 #include "Message_IDs.h"
 #include "ClipboardUtils.h"
+#include "ShortcutProvider.h"
 
 HHOOK CMainDlg::m_hMouseHook = NULL;
 HHOOK CMainDlg::m_hKeyboardHook = NULL;
@@ -55,9 +56,23 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_CBN_SELCHANGE(IDC_IMAGE_EXT, OnCbnSelchangeImageExt)
 	
 	ON_BN_CLICKED(IDC_SCREEN_DRAW, OnBtnClickedScreenDraw)
+	ON_BN_CLICKED(IDC_SCREEN_DRAW2, OnBtnClickedScreenDraw)
+
+
 	ON_BN_CLICKED(IDC_FULL_SCREEN, OnBtnSnipDeskScreenshot)
 	ON_BN_CLICKED(IDC_SNIP_TO_CLIPBOARD,OnBtnSnipToClipboard)
 	ON_BN_CLICKED(IDC_BROWSE_IMG_PATH, OnBtnClickedBrowseImgPath)
+
+	
+
+	ON_BN_CLICKED(IDC_BUTTON_EXIT, OnAppExit)
+
+
+
+
+
+	ON_BN_CLICKED(IDC_CHECK_SHORTCUT, OnCheckboxClickedShortcut)
+
 	ON_EN_KILLFOCUS(IDC_LINE_WIDTH, OnEnKillfocusLineWidth)
 	ON_MESSAGE(WM_SCREENDRAW_DONE, OnDrawComplete)
 	ON_MESSAGE(WM_MOUSEHOOK_CANCEL, OnMouseHookCancel)
@@ -70,7 +85,7 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_MESSAGE(WM_QUERYENDSESSION, OnQueryEndSession)
 
 	ON_COMMAND(ID_SHOW, OnTrayShow)
-	ON_COMMAND(ID_SHUTDOWN, OnShutdown)
+	ON_COMMAND(ID_SHUTDOWN, OnAppExit)
 	ON_COMMAND(ID_SHOW_ABOUT, OnShowAbout)
 	ON_COMMAND(ID_DRAW_SEL, OnDrawAndSnipSelection)
 	ON_COMMAND(ID__SNIPTOCLIPBOARD, OnBtnSnipToClipboard)
@@ -95,6 +110,11 @@ afx_msg LRESULT CMainDlg::OnActive(WPARAM wParam, LPARAM lParam) {
 	if (LOWORD(wParam) != WA_ACTIVE) {
 		ShowWindow(SW_HIDE);
 	}
+	else {
+		ShortcutProvider shortcutProvider(m_hWnd);
+		BOOL isShortcurt = shortcutProvider.IsDesktopShortcut(SCREENSHOT_TOOLS_SHORTCUT);
+		((CButton*)GetDlgItem(IDC_CHECK_SHORTCUT))->SetCheck(isShortcurt);
+	}
 
 	return 1;
 }
@@ -114,7 +134,7 @@ HICON CMainDlg::GetIconForItem(HMENU pmenu,UINT itemID) const
 			MAKEINTRESOURCE(itemID),
 			IMAGE_ICON,
 			16, 16,    // or whatever size icon you want to load
-			LR_DEFAULTCOLOR | LR_SHARED));
+			LR_DEFAULTCOLOR ));
 	}
 
 	if (hIcon == NULL)
@@ -131,7 +151,7 @@ HICON CMainDlg::GetIconForItem(HMENU pmenu,UINT itemID) const
 
 		if (!sItem.IsEmpty())
 			hIcon = static_cast<HICON>(::LoadImage(::AfxGetResourceHandle(), sItem,
-				IMAGE_ICON, 16, 16, LR_DEFAULTCOLOR | LR_SHARED));
+				IMAGE_ICON, 16, 16, LR_DEFAULTCOLOR ));
 	}
 	return hIcon;
 }
@@ -157,7 +177,7 @@ void CMainDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpdis)
 
 		::DrawIconEx(lpdis->hDC, lpdis->rcItem.left, lpdis->rcItem.top,
 			hIcon, bitmap.bmWidth, bitmap.bmHeight, 0, NULL, DI_NORMAL);
-		//      ::DestroyIcon(hIcon); // we use LR_SHARED instead
+		::DestroyIcon(hIcon); 
 	}
 }
 
@@ -248,6 +268,7 @@ LRESULT CMainDlg::LatestRectangularSnapshot()
 
 void  CMainDlg::OnBtnSnipDeskScreenshot() {
 	SnipDeskScreenshot();
+	((CButton*)GetDlgItem(IDC_FULL_SCREEN))->SetCheck(0);
 }
 
 LRESULT CMainDlg::SnipDeskScreenshot()
@@ -340,7 +361,13 @@ afx_msg LRESULT CMainDlg::OnHotKey(WPARAM wParam, LPARAM lParam) {
 CMainDlg::CMainDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CMainDlg::IDD, pParent)
 {
-	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+//	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+
+	m_hIcon = static_cast<HICON>(::LoadImage(::AfxGetResourceHandle(),
+		MAKEINTRESOURCE(IDR_MAINFRAME),
+		IMAGE_ICON,
+		32, 32,    // or whatever size icon you want to load
+		LR_DEFAULTCOLOR | LR_SHARED));
 
 	m_hSelectCursor = AfxGetApp()->LoadStandardCursor(IDC_SIZEALL);
 
@@ -401,6 +428,7 @@ BOOL CMainDlg::OnInitDialog()
 	RegisterHotKey(m_hWnd, HOTKEY_700_C_OnSnipToClipboard, MOD_CONTROL | MOD_SHIFT, HOTKEY_700_C_CHAR);
 	RegisterHotKey(m_hWnd, HOTKEY_800_c_OnSnipToClipboard, MOD_CONTROL | MOD_SHIFT, HOTKEY_800_c_CHAR);
 
+	
 	memset(&m_NID, 0, sizeof(m_NID));
 	m_NID.cbSize = sizeof(m_NID);
 	m_NID.uID = IDR_TRAY_MENU;
@@ -624,23 +652,34 @@ void CMainDlg::OnCbnSelchangeImageExt()
 void CMainDlg::OnBtnClickedScreenDraw()
 {
 	m_bSelecting = FALSE;
-
+	((CButton*)GetDlgItem(IDC_SCREEN_DRAW2))->SetCheck(0);
 	ShowWindow(SW_HIDE);
 	ActivateSelectionHook(TRUE);
 }
 
 void CMainDlg::OnBtnSnipToClipboard()
 {
+	((CButton*)GetDlgItem(IDC_SNIP_TO_CLIPBOARD))->SetCheck(0);
 	m_bSelecting = FALSE;
 	m_bToClipboardEnabled = true;
 	ShowWindow(SW_HIDE);
 	ActivateSelectionHook(TRUE);
 }
 
+void CMainDlg::OnCheckboxClickedShortcut() {
+	ShortcutProvider shortcutProvider(m_hWnd);
+	if (!shortcutProvider.IsDesktopShortcut(SCREENSHOT_TOOLS_SHORTCUT)) {
+		shortcutProvider.SetDesktopShortcut(true, SCREENSHOT_TOOLS_SHORTCUT, SCREENSHOT_TOOLS_SHORTCUT);
+	}
+	else {
+		shortcutProvider.SetDesktopShortcut(false, SCREENSHOT_TOOLS_SHORTCUT, SCREENSHOT_TOOLS_SHORTCUT);
+	}
+}
+
 
 void CMainDlg::OnBtnClickedBrowseImgPath()
 {
-
+	((CButton*)GetDlgItem(IDC_BROWSE_IMG_PATH))->SetCheck(0);
 	LPMALLOC pMalloc;
 	if (!(SUCCEEDED(::SHGetMalloc(&pMalloc))))
 		return;
@@ -754,8 +793,9 @@ void CMainDlg::OnTrayShow()
 	ShowWindow(SW_RESTORE);
 }
 
-void CMainDlg::OnShutdown()
+void CMainDlg::OnAppExit()
 {
+	((CButton*)GetDlgItem(IDC_BUTTON_EXIT))->SetCheck(0);
 	if (MessageBox( _T("Are you sure you want to exit ?"), _T("Screenshot Tools"), MB_YESNO) == IDYES) {
 
 		m_NID.hIcon = NULL;
@@ -1366,5 +1406,9 @@ void CMainDlg::SetControlValues()
 	}
 
 	((CButton*)GetDlgItem(IDC_CHECK_AUTO_START))->SetCheck(m_bAutoRun) ;
+
+	ShortcutProvider shortcutProvider(m_hWnd);
+	BOOL isShortcurt = shortcutProvider.IsDesktopShortcut(SCREENSHOT_TOOLS_SHORTCUT);
+	((CButton*)GetDlgItem(IDC_CHECK_SHORTCUT))->SetCheck(isShortcurt);
 }
 

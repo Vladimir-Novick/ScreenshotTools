@@ -8,12 +8,12 @@ This is program that runs in the background and be minimized to the system tray
 
 ## ScreenshotTools Features:
 
-  * Minimize to the system tray icon ![tray icon](https://github.com/Vladimir-Novick/ScreenshotTools/raw/master/src/doc/tray_icon.png)
+  * Minimization to the system tray icon ![tray icon](https://github.com/Vladimir-Novick/ScreenshotTools/raw/master/src/doc/tray_icon.png)
   * Hot Keys options:
       * ( Ctrl + Shift  X ) - Rectangular Snapshot
       * ( Ctrl + Shift  W ) - Snipping latest selected region to file 
       * ( Ctrl + Shift  S ) - Full-Screen Snapshot
-      * ( Ctrl + Shift  C ) - Snippings screenshot to Clipboard
+      * ( Ctrl + Shift  C ) - Copy snippings screenshot to Clipboard
       * ( Print Screen    ) - Automatic save screenshot to File
   * Saving Image to File
   * Choice storage directory
@@ -23,6 +23,7 @@ This is program that runs in the background and be minimized to the system tray
   * Add prefix to file name 
   * The properties window is automatically minimized to the system tray.
   * Ability to run the program when the computer boots.
+  * Creating shortcut on the desktop 
   * Menu of system toolbar icon:
     * Snipping screenshot To File
     * Snipping screenshot using Latest Region
@@ -30,7 +31,7 @@ This is program that runs in the background and be minimized to the system tray
     * Snipping screenshot To Clipboard
     * Choice a Rectangular region
     * Show Properties Window
-    * Shutdown
+    * Exit
 
 
 ![ScreenshotTools Properties Window ](https://github.com/Vladimir-Novick/ScreenshotTools/raw/master/src/doc/properties_window.png)

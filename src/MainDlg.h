@@ -8,6 +8,7 @@
 #include "Canvas.h"
 
 #define SCREENSHOT_TOOLS_REG_KEY	"ScreenshotTools"
+#define SCREENSHOT_TOOLS_SHORTCUT "ScreenshotTools"
 
 class CMainDlg : public CDialog
 {
@@ -119,8 +120,9 @@ protected:
 	afx_msg void OnBtnClickedScreenDraw();
 	afx_msg void OnBtnSnipToClipboard();
 	afx_msg void OnBtnClickedBrowseImgPath();
+	afx_msg void OnCheckboxClickedShortcut();
 	afx_msg void OnEnKillfocusLineWidth();
-	afx_msg void  OnBtnSnipDeskScreenshot();
+	afx_msg void OnBtnSnipDeskScreenshot();
 
 	// Our Messages
 	LRESULT OnDrawComplete(WPARAM wParam, LPARAM lParam);
@@ -136,7 +138,7 @@ protected:
 
 	// Tray Menu Items
 	afx_msg void OnTrayShow();
-	afx_msg void OnShutdown();
+	afx_msg void OnAppExit();
 	afx_msg void OnShowAbout();
 	afx_msg void OnDrawAndSnipSelection();
 	afx_msg void OnLatestRectangularSnapshot();

@@ -35,8 +35,6 @@ using namespace Gdiplus;
 #pragma comment (lib, "Gdiplus.lib")
 typedef GdiplusStartupInput GDIPSI;
 
-
-
 #include <atlbase.h>
 #include <atlcom.h>
 #include <atlctl.h>

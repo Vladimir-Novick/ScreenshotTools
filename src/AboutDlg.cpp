@@ -5,13 +5,11 @@
 #include "AboutDlg.h"
 #include ".\aboutdlg.h"
 
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
-
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 ON_MESSAGE(WM_ACTIVATE, OnActive)
@@ -57,13 +55,6 @@ BOOL CAboutDlg::OnInitDialog()
 	//::SetLayeredWindowAttributes(m_hWnd, 
 	//	RGB(255,0,255),	215, LWA_COLORKEY|LWA_ALPHA);
 
-
-
 	return FALSE;
 }
-
-
-
-
-
 

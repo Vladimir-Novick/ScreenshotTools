@@ -8,13 +8,11 @@
 #include <objidl.h>
 #include <shlguid.h>
 
-
 void ShortcutProvider::SetDesktopShortcut(bool enable, LPSTR pszShotcutName, LPSTR pszDescription = "") {
 	TCHAR szCurrentDirectory[MAX_PATH];
 	TCHAR szExeFileName[MAX_PATH];
 	GetModuleFileName(NULL, szExeFileName, MAX_PATH);
 	 GetCurrentDirectory(MAX_PATH, szCurrentDirectory);
-	
 
 	CString		pszLinkfile;
 	GetDesktopPath( pszLinkfile);
@@ -54,7 +52,6 @@ void ShortcutProvider::GetDesktopPath(CString &m_strDesktopPath)
 			if (m_strDesktopPath.Right(1) != _T('\\'))
 				m_strDesktopPath += _T('\\');
 
-
 		}
 	}
 }
@@ -72,7 +69,6 @@ BOOL ShortcutProvider::IsDesktopShortcut(LPSTR pszShotcutName) {
 
 	return PathFileExistsA(lpszLinkFileName);
 }
-
 
 HRESULT ShortcutProvider::CreateShortcut(LPSTR pszTargetfile, LPSTR pszTargetargs,
 	LPSTR pszLinkfile, LPSTR pszDescription ,
@@ -152,7 +148,6 @@ ShortcutProvider::ShortcutProvider(HWND hWnd)
 {
 	m_hWnd = hWnd;
 }
-
 
 ShortcutProvider::~ShortcutProvider()
 {

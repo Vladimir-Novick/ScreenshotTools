@@ -4,7 +4,6 @@
 #ifndef ___REGISTRY_H___
 #define ___REGISTRY_H___
 
-
 class CRegistry
 {
 public:
@@ -17,7 +16,6 @@ protected:
 	// Properties
 	HKEY	m_hMainKey;
 	TCHAR	m_strSubKey[MAX_PATH];
-	
 
 public:
 	// Implementation
@@ -42,6 +40,5 @@ protected:
 	// Helper Functions
 	void SwapBits(LPTSTR strSwap, int iLength, UINT nSwap);
 };
-
 
 #endif // ___REGISTRY_H___

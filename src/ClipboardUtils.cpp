@@ -1,11 +1,9 @@
 #include "stdafx.h"
 #include "ClipboardUtils.h"
 
-
 ClipboardUtils::ClipboardUtils()
 {
 }
-
 
 ClipboardUtils::~ClipboardUtils()
 {

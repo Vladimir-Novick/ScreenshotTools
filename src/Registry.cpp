@@ -7,7 +7,6 @@
 #define MAX_REG_VAL		2048
 #define AUTO_RUN_REG_KEY "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"
 
-
 CRegistry::CRegistry()
 {
 	m_hMainKey = HKEY_CURRENT_USER;
@@ -195,8 +194,6 @@ BOOL CRegistry::IsAutoRun(LPCTSTR strValName) {
 		catch (...) {}
 		return lResult;
 	}
-
-
 
 	int	CRegistry::SetRegStr(LPCTSTR strValName, LPCTSTR strValue)
 	{

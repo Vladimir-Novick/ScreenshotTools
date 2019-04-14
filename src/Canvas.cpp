@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2019 Vladimir Novick Copyright (C) 2005-2019 by Vladimir Novick
+Copyright (C) 2005-2019 by Vladimir Novick
 
 			  http://www.linkedin.com/in/vladimirnovick
 
@@ -60,7 +60,6 @@ BOOL Canvas::PreTranslateMessage(MSG* pMsg)
 			::PostMessage(this->m_hWnd, WM_CLOSE, 0, 0);
 			return TRUE;                
 		}
-
 	}
 
 	switch (pMsg->message)
@@ -101,12 +100,11 @@ BOOL Canvas::OnInitDialog()
 void Canvas::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-
 }
+
 void Canvas::OnKillFocus(CWnd *pNewWnd)
 {
 	CDialog::OnKillFocus(pNewWnd);
-
 }
 
 void Canvas::OnPaint()
@@ -116,7 +114,6 @@ void Canvas::OnPaint()
 void Canvas::OnSetFocus(CWnd * pOldWnd)
 {
 	CDialog::OnSetFocus(pOldWnd);
-
 }
 
 BEGIN_MESSAGE_MAP(Canvas, CDialog)

@@ -6,7 +6,6 @@
 #include "GetDataDlg.h"
 #include ".\getdatadlg.h"
 
-
 BEGIN_MESSAGE_MAP(CGetDataDlg, CDialog)
 	ON_BN_CLICKED(IDOK, OnBnClickedOk)
 END_MESSAGE_MAP()

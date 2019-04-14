@@ -45,10 +45,13 @@ This is program that runs in the background and be minimized to the system tray
   * ( Print Screen    ) - Automatic save to File
 
 
+[http://www.linkedin.com/in/vladimirnovick ](http://www.linkedin.com/in/vladimirnovick)
+
 
 # License
 
       Copyright (C) 2005-2019 by Vladimir Novick 
+
 
       http://www.linkedin.com/in/vladimirnovick , 
 

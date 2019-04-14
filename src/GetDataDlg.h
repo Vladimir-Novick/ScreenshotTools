@@ -5,7 +5,6 @@
 #define ___GETDATADLG_H___
 #pragma once
 
-
 class CGetDataDlg : public CDialog
 {
 public:
@@ -37,6 +36,5 @@ protected:
 public:
 	afx_msg void OnBnClickedOk();
 };
-
 
 #endif // ___GETDATADLG_H___

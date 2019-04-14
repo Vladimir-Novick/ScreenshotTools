@@ -7,7 +7,6 @@
 
 #include "Resource.h"
 
-
 class CAboutDlg : public CDialog
 {
 public:
@@ -23,7 +22,6 @@ public:
 
 protected:
 
-
 public:
 	// Overrides
 	virtual BOOL OnInitDialog();
@@ -34,6 +32,5 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 };
-
 
 #endif // ___ABOUTDLG_H___

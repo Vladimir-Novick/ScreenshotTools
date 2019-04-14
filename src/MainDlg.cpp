@@ -1,6 +1,5 @@
 /*
 
-
 MIT License
 
 		 Copyright (C) 2005-2019 by Vladimir Novick http://www.linkedin.com/in/vladimirnovick
@@ -40,8 +39,6 @@ HHOOK CMainDlg::m_hMouseHook = NULL;
 HHOOK CMainDlg::m_hKeyboardHook = NULL;
 CMainDlg* CMainDlg::m_pThis = NULL;
 
-
-
 static int __stdcall BrowseCallbackProc(HWND, UINT, LPARAM, LPARAM);
 
 BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
@@ -58,18 +55,11 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 	ON_BN_CLICKED(IDC_SCREEN_DRAW, OnBtnClickedScreenDraw)
 	ON_BN_CLICKED(IDC_SCREEN_DRAW2, OnBtnClickedScreenDraw)
 
-
 	ON_BN_CLICKED(IDC_FULL_SCREEN, OnBtnSnipDeskScreenshot)
 	ON_BN_CLICKED(IDC_SNIP_TO_CLIPBOARD,OnBtnSnipToClipboard)
 	ON_BN_CLICKED(IDC_BROWSE_IMG_PATH, OnBtnClickedBrowseImgPath)
 
-	
-
 	ON_BN_CLICKED(IDC_BUTTON_EXIT, OnAppExit)
-
-
-
-
 
 	ON_BN_CLICKED(IDC_CHECK_SHORTCUT, OnCheckboxClickedShortcut)
 
@@ -98,13 +88,11 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialog)
 
 END_MESSAGE_MAP()
 
-
 LRESULT CMainDlg::OnQueryEndSession(WPARAM wParm, LPARAM lParm)
 {
 		PostMessage(WM_QUIT);
 		return TRUE;
 }
-
 
 afx_msg LRESULT CMainDlg::OnActive(WPARAM wParam, LPARAM lParam) {
 	if (LOWORD(wParam) != WA_ACTIVE) {
@@ -120,9 +108,6 @@ afx_msg LRESULT CMainDlg::OnActive(WPARAM wParam, LPARAM lParam) {
 }
 
 #pragma region Draw menu icon
-
-
-
 
 HICON CMainDlg::GetIconForItem(HMENU pmenu,UINT itemID) const
 {
@@ -233,7 +218,6 @@ void CMainDlg::OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpmis)
 	lpmis->itemWidth = 16;
 	lpmis->itemHeight = 16;
 
-
 	HICON hIcon = GetIconForItem(this->popupMenu,  lpmis->itemID);
 
 	if (hIcon)
@@ -249,12 +233,10 @@ void CMainDlg::OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpmis)
 		lpmis->itemWidth = bitmap.bmWidth;
 		lpmis->itemHeight = bitmap.bmHeight;
 
-
 	}
 }
 
 #pragma endregion
-
 
 afx_msg LRESULT CMainDlg::OnGropScreenshot(WPARAM wParam, LPARAM lParam)
 {
@@ -286,8 +268,6 @@ LRESULT CMainDlg::SnipDeskScreenshot()
 
 	return CutRegionToFile(ptFirst, ptLast);
 }
-
-
 
 LRESULT CMainDlg::CutRegionToFile(CPoint ptFirst, CPoint ptLast)
 {
@@ -332,7 +312,6 @@ LRESULT CMainDlg::CutRegionToFile(CPoint ptFirst, CPoint ptLast)
 afx_msg LRESULT CMainDlg::OnHotKey(WPARAM wParam, LPARAM lParam) {
 	switch (wParam)
 	{
-
 
 	case HOTKEY_300_W_LatestRectangularSnapshot:
 	case HOTKEY_400_w_LatestRectangularSnapshot:
@@ -428,7 +407,6 @@ BOOL CMainDlg::OnInitDialog()
 	RegisterHotKey(m_hWnd, HOTKEY_700_C_OnSnipToClipboard, MOD_CONTROL | MOD_SHIFT, HOTKEY_700_C_CHAR);
 	RegisterHotKey(m_hWnd, HOTKEY_800_c_OnSnipToClipboard, MOD_CONTROL | MOD_SHIFT, HOTKEY_800_c_CHAR);
 
-	
 	memset(&m_NID, 0, sizeof(m_NID));
 	m_NID.cbSize = sizeof(m_NID);
 	m_NID.uID = IDR_TRAY_MENU;
@@ -676,7 +654,6 @@ void CMainDlg::OnCheckboxClickedShortcut() {
 	}
 }
 
-
 void CMainDlg::OnBtnClickedBrowseImgPath()
 {
 	((CButton*)GetDlgItem(IDC_BROWSE_IMG_PATH))->SetCheck(0);
@@ -818,8 +795,6 @@ void CMainDlg::OnDrawAndSnipSelection()
 	ActivateSelectionHook(TRUE);
 }
 
-
-
 void CMainDlg::ActivateCanvasWindow() {
 
 	if (m_pCanvasDialog == nullptr) {
@@ -847,11 +822,11 @@ afx_msg void CMainDlg::OnLatestRectangularSnapshot()
 }
 
 afx_msg void CMainDlg::OnRegionSelect() {
+
+	((CButton*)GetDlgItem(IDC_REGION_SELECTION))->SetCheck(0);
 	m_bGetScreenShot = false;
 	ActivateCanvasWindow();
 }
-
-
 
 void CMainDlg::OnMouseHookLButtonDown(UINT nFlags, CPoint point)
 {
@@ -1198,8 +1173,6 @@ BOOL CMainDlg::SaveImageAs(HBITMAP hBmp, CString strFile)
 		return true;
 	}
 
-	
-
 	Bitmap* pScreenShot = new Bitmap(hBmp, (HPALETTE)NULL);
 
 	BOOL bRes = (pScreenShot->Save(T2W(strFile), &m_clsidImgType, NULL) == Ok);
@@ -1352,8 +1325,6 @@ void CMainDlg::WriteRegistrySettings()
 	reg.SetRegStr(_T("ImageName"), (LPTSTR)(LPCTSTR)m_strImageName);
 	reg.SetRegInt(_T("NamingOption"), m_iNamingOpt);
 	reg.AutoRun(m_bAutoRun, SCREENSHOT_TOOLS_REG_KEY);
-
-
 }
 
 void CMainDlg::GetControlValues()
@@ -1382,8 +1353,6 @@ void CMainDlg::GetControlValues()
 
 		m_bAutoRun = TRUE;
 	}
-	
-
 
 }
 

@@ -12,8 +12,6 @@
 #define WM_START_SELECT_REGION	(WM_USER + 106)
 #define WM_CROP_SCREENSHOT      (WM_USER + 107)
 
-
-
 #define  HOTKEY_300_W_LatestRectangularSnapshot 300
 #define  HOTKEY_300_W_CHAR 'W'
 
@@ -32,13 +30,10 @@
 #define  HOTKEY_200_x_OnDrawAndSnipSelection 200
 #define  HOTKEY_200_x_CHAR 'x'
 
-
 #define  HOTKEY_700_C_OnSnipToClipboard 700
 #define  HOTKEY_700_C_CHAR 'C'
 
 #define  HOTKEY_800_c_OnSnipToClipboard 800
 #define  HOTKEY_800_c_CHAR 'c'
-
-
 
 #endif

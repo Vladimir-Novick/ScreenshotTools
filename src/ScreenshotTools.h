@@ -9,7 +9,6 @@
 #include "resource.h"	
 #include "ScreenshotTools_i.h"
 
-
 class CApp : public CWinApp
 {
 public:

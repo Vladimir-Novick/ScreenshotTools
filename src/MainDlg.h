@@ -20,9 +20,7 @@ protected:
 	// Dialog Data
 	enum { IDD = IDD_MAIN_DIALOG };
 
-
 	BOOL m_bAutoRun;
-
 
 	bool bMinimized_;
 	bool m_bToClipboardEnabled;
@@ -134,7 +132,6 @@ protected:
 	afx_msg void OnInitMenuPopup(CMenu* pMenu, UINT nIndex, BOOL bSysMenu);
 	afx_msg void OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpmis);
 	HICON GetIconForItem(HMENU pMenu,UINT itemID) const;
-
 
 	// Tray Menu Items
 	afx_msg void OnTrayShow();

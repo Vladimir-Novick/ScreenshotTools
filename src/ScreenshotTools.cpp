@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright (c) 2019 Vladimir Novick Copyright (C) 2005-2019 by Vladimir Novick
+Copyright (C) 2005-2019 by Vladimir Novick
 
 			  http://www.linkedin.com/in/vladimirnovick
 
@@ -24,7 +24,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-
 */
 #include "stdafx.h"
 #include "ScreenshotTools.h"
@@ -35,8 +34,6 @@ SOFTWARE.
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
-
 
 class CScreenshotToolsModule :
 	public ATL::CAtlMfcModule
@@ -144,7 +141,6 @@ BOOL CApp::InitInstance()
 // The one and only CApp object
 //=================================================
 CApp theApp;
-
 
 BOOL CApp::ExitInstance()
 {
